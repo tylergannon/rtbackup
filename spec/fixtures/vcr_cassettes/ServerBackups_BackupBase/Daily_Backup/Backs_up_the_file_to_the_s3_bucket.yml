@@ -1,0 +1,752 @@
+---
+http_interactions:
+- request:
+    method: head
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/my_test_app/www/daily/static_files.daily.2018-03-26%2016:00.tgz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T161746Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=349c41e7af5143bfbdb8612498a6f5484a69614567ff06620e1f11a148d9b84d
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Amz-Request-Id:
+      - DB1841189BF1BB4E
+      X-Amz-Id-2:
+      - 2widm1cOXb/YjXT8Czi4s1Ft7lTjOgUKNhclIyxQhCSUkrnMCY+DExjmFIDxDUzZszznDw1mIaU=
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Mon, 26 Mar 2018 16:17:46 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:17:46 GMT
+- request:
+    method: head
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/my_test_app/www/daily/static_files.daily.2018-03-26%2016:00.tgz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T161746Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=349c41e7af5143bfbdb8612498a6f5484a69614567ff06620e1f11a148d9b84d
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Amz-Request-Id:
+      - F98FD7F9D0F8F2EC
+      X-Amz-Id-2:
+      - 8HSxDUBaC9frYxOL996J1kl3gTsE2PfqvOKtsztdUkMn9p4KeHFJxF5tl+kCl5pzt+hsqyp5O4k=
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Mon, 26 Mar 2018 16:17:46 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:17:46 GMT
+- request:
+    method: head
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/my_test_app/www/daily/static_files.daily.2018-03-26%2016:00.tgz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T161746Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=349c41e7af5143bfbdb8612498a6f5484a69614567ff06620e1f11a148d9b84d
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Amz-Request-Id:
+      - DD16DAF8D7C94373
+      X-Amz-Id-2:
+      - c4GwttX7BysIaxBmhWz/7tFY75Ug6WiUM/ndjpwQzJE0u7vn6YLAWg8wtTqlMSOO6YoMUko2GTk=
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Mon, 26 Mar 2018 16:17:46 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:17:47 GMT
+- request:
+    method: head
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/my_test_app/www/daily/static_files.daily.2018-03-26%2016:00.tgz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T161746Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=349c41e7af5143bfbdb8612498a6f5484a69614567ff06620e1f11a148d9b84d
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Amz-Request-Id:
+      - F99AAF80CDAAFA7D
+      X-Amz-Id-2:
+      - x31nm4CNPmYMo6V3BFzfCR7cUUeu1vouLNWPfuYSOu+dlithJR1U9T8TcVQ6R77F8i0oJ/ge2Ow=
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Mon, 26 Mar 2018 16:17:47 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:17:47 GMT
+- request:
+    method: put
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      Content-Type:
+      - application/x-gtar
+      X-Amz-Acl:
+      - private
+      X-Amz-Date:
+      - 20180326T162526Z
+      X-Amz-Content-Sha256:
+      - STREAMING-AWS4-HMAC-SHA256-PAYLOAD
+      X-Amz-Decoded-Content-Length:
+      - '259'
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=content-type;host;x-amz-acl;x-amz-content-sha256;x-amz-date;x-amz-decoded-content-length,
+        Signature=5d83c11554edba7bc3f679aa03a705356b2936e30c740fb8cda2c1cd4218b9a0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - nPAXiLj6+SAVfEgxXfutIDYlhVts1/D6BfyMUkz1sP5COVfP+RbPTDHVEdvu4up7GA+8L0Ym3FI=
+      X-Amz-Request-Id:
+      - 64141B5BAA484687
+      Date:
+      - Mon, 26 Mar 2018 16:25:28 GMT
+      Etag:
+      - '"54d41776f9c4c2731297dbdea1f1e8b4"'
+      Content-Length:
+      - '0'
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:25:27 GMT
+- request:
+    method: get
+    uri: https://s3-ap-southeast-1.amazonaws.com/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T162857Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=76027fd3e56c5ef27e081f378db9bfb0cf6c88fc1873c16eebf5f18c513c1b09
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - 4m7wyJrluUTBibGERTOr5qNn1RweDc+gLkckMiHRaMHWz7X7UPD1FkzgRXYtwHVW330Whmd/Y20=
+      X-Amz-Request-Id:
+      - E4F24D48B237127E
+      Date:
+      - Mon, 26 Mar 2018 16:28:58 GMT
+      Content-Type:
+      - application/xml
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListAllMyBucketsResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><Buckets><Bucket><Name>myapp-backup-test</Name><CreationDate>2018-03-23T07:35:34.000Z</CreationDate></Bucket><Bucket><Name>tyler-gannon-test-bucket</Name><CreationDate>2018-03-23T06:19:49.000Z</CreationDate></Bucket></Buckets></ListAllMyBucketsResult>
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:28:57 GMT
+- request:
+    method: get
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T162858Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=c2fb80edfc75fe7b8fa8ec4f7f454b14c98389823322d5cfd1856f3d870edb0a
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - IhvYvjMj4ML9mYLThrEaF/F5YkH4IsfL3iMRpN4UkOiiPKkQKnUDVjNZo140J9dKBploTbxl8lc=
+      X-Amz-Request-Id:
+      - 2670454E3331CF0E
+      Date:
+      - Mon, 26 Mar 2018 16:28:59 GMT
+      X-Amz-Bucket-Region:
+      - ap-southeast-1
+      Content-Type:
+      - application/xml
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>myapp-backup-test</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>ca.crt</Key><LastModified>2018-03-23T07:37:49.000Z</LastModified><ETag>&quot;8f1b480bdb64fed7827b332d67d12401&quot;</ETag><Size>5714</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents><Contents><Key>incremental.1.testfile</Key><LastModified>2018-03-23T09:21:24.000Z</LastModified><ETag>&quot;4b804294f94ed44ff6855f7888cd6ae9&quot;</ETag><Size>1849340</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents><Contents><Key>my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz</Key><LastModified>2018-03-26T16:25:28.000Z</LastModified><ETag>&quot;54d41776f9c4c2731297dbdea1f1e8b4&quot;</ETag><Size>259</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents><Contents><Key>server.crt</Key><LastModified>2018-03-23T07:37:48.000Z</LastModified><ETag>&quot;8cfec82deeea72d7f57fe74bc3722f2b&quot;</ETag><Size>1968</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents><Contents><Key>server.key</Key><LastModified>2018-03-23T07:37:49.000Z</LastModified><ETag>&quot;5d39d038b04c61520b2ee2b90c413248&quot;</ETag><Size>1730</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:28:58 GMT
+- request:
+    method: head
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T162859Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=68e4d0ef52ef8a4fad6ada98c08117e8b3d0cfbf8a9207476d928bcdeb3cf345
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - t+F9HBZSXdPp0dMAsPCuNd6vSl1EX2uhpE4kYFFGv1JNFHhphWDUcZpdhj0wpfTwLIm0tVkfKBY=
+      X-Amz-Request-Id:
+      - F299B104EEA70F35
+      Date:
+      - Mon, 26 Mar 2018 16:29:00 GMT
+      Last-Modified:
+      - Mon, 26 Mar 2018 16:25:28 GMT
+      Etag:
+      - '"54d41776f9c4c2731297dbdea1f1e8b4"'
+      Accept-Ranges:
+      - bytes
+      Content-Type:
+      - application/x-gtar
+      Content-Length:
+      - '259'
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:28:59 GMT
+- request:
+    method: get
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/?max-keys=1000&prefix=my_test_app/www/daily/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T162859Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=2f24c9b4de298371a9684438fd570805710f74bbf3573734a1e2fe17f1dffe86
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - x48eKZHU5hqn/9P+b/D9PB5tFyOPvp9xoe969qx863TD0K8o2vLT0TPFIO50YhW3wfzFQ/z2uPQ=
+      X-Amz-Request-Id:
+      - B3EB8ACB67C9DA64
+      Date:
+      - Mon, 26 Mar 2018 16:29:00 GMT
+      X-Amz-Bucket-Region:
+      - ap-southeast-1
+      Content-Type:
+      - application/xml
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>myapp-backup-test</Name><Prefix>my_test_app/www/daily/</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz</Key><LastModified>2018-03-26T16:25:28.000Z</LastModified><ETag>&quot;54d41776f9c4c2731297dbdea1f1e8b4&quot;</ETag><Size>259</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:28:59 GMT
+- request:
+    method: get
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/?max-keys=1000&prefix=my_test_app/www/daily/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T162900Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=f75874ecbd1df43d8365f0d6651bdae41c1c70dd97c331c8d6af0c6f9bda3e08
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - bfBz8z0yUYTIOn41Et+/XzdIX9Vxdw7la9WVeEPOfJkD4eu3dL6HPFH/QC5YBJg0NPpFG1E3p5A=
+      X-Amz-Request-Id:
+      - 42C0B929B1FA9FD2
+      Date:
+      - Mon, 26 Mar 2018 16:29:01 GMT
+      X-Amz-Bucket-Region:
+      - ap-southeast-1
+      Content-Type:
+      - application/xml
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>myapp-backup-test</Name><Prefix>my_test_app/www/daily/</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz</Key><LastModified>2018-03-26T16:25:28.000Z</LastModified><ETag>&quot;54d41776f9c4c2731297dbdea1f1e8b4&quot;</ETag><Size>259</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:29:00 GMT
+- request:
+    method: head
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T162900Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=27d75ef02cc9d6d00d2914936daab4329af1b39c3bd5c3c135b164b668f6a4f7
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - 6IzHG2AJdV4vc+t5aJrfn6u5HOtwx6lbwr5wT/YwmbSo2/BFjpjJ0x3qWwIIGhqzI3n6rYwTyVs=
+      X-Amz-Request-Id:
+      - 2B745D55C244CFAF
+      Date:
+      - Mon, 26 Mar 2018 16:29:01 GMT
+      Last-Modified:
+      - Mon, 26 Mar 2018 16:25:28 GMT
+      Etag:
+      - '"54d41776f9c4c2731297dbdea1f1e8b4"'
+      Accept-Ranges:
+      - bytes
+      Content-Type:
+      - application/x-gtar
+      Content-Length:
+      - '259'
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:29:00 GMT
+- request:
+    method: get
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/?max-keys=1000&prefix=my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T162901Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=e2ae9c33b00274287f55c894a33b1434521c04dba2af9e284728ffcb8167fe78
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - Ku9z4+DAVwWcLUH2I4i9ZikGzXy0dXR+t65j9GHh7bmHSZjTj/gCgUuZSKlA5Q5bVCoydt5dT6o=
+      X-Amz-Request-Id:
+      - 029FC85754977EE8
+      Date:
+      - Mon, 26 Mar 2018 16:29:02 GMT
+      X-Amz-Bucket-Region:
+      - ap-southeast-1
+      Content-Type:
+      - application/xml
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>myapp-backup-test</Name><Prefix>my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz</Key><LastModified>2018-03-26T16:25:28.000Z</LastModified><ETag>&quot;54d41776f9c4c2731297dbdea1f1e8b4&quot;</ETag><Size>259</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:29:01 GMT
+- request:
+    method: get
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/?max-keys=1000&prefix=my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T162901Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=e2ae9c33b00274287f55c894a33b1434521c04dba2af9e284728ffcb8167fe78
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - iobw/uUxs+8fbONpA39m/og2Ykfx+vv2/cY3kC9MX2U11hRACgc6SrPsok17tpDtJwWDpSF1GZA=
+      X-Amz-Request-Id:
+      - 53069724B8965EA6
+      Date:
+      - Mon, 26 Mar 2018 16:29:02 GMT
+      X-Amz-Bucket-Region:
+      - ap-southeast-1
+      Content-Type:
+      - application/xml
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>myapp-backup-test</Name><Prefix>my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz</Key><LastModified>2018-03-26T16:25:28.000Z</LastModified><ETag>&quot;54d41776f9c4c2731297dbdea1f1e8b4&quot;</ETag><Size>259</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:29:02 GMT
+- request:
+    method: get
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/?max-keys=1000&prefix=my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T162902Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=193a4eef66914d6b9c2a310a9675ca4e76d3b17508d45e82a794f8ae036b3c3e
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - Vgvd+yQw4WnOryc2R3HW1Ov8LlsQYRQNy3ejg7/7sRKpXvcilAQxpy+yBGVRNtpEXFeclR973uc=
+      X-Amz-Request-Id:
+      - 4084A06569EEE38A
+      Date:
+      - Mon, 26 Mar 2018 16:29:03 GMT
+      X-Amz-Bucket-Region:
+      - ap-southeast-1
+      Content-Type:
+      - application/xml
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>myapp-backup-test</Name><Prefix>my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz</Key><LastModified>2018-03-26T16:25:28.000Z</LastModified><ETag>&quot;54d41776f9c4c2731297dbdea1f1e8b4&quot;</ETag><Size>259</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:29:02 GMT
+- request:
+    method: delete
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T162902Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=d092125a59bd1abe59437449e1222b4f17db78e0ae0d321a2f3ae7921c0d0099
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      X-Amz-Id-2:
+      - mybHj7OyppqJDSSQRmEv+MQx9rXWAs6PKiDGJ8VQNu1o+NFLDgRDdUeiQ5cVUJPKIDPj4F31kWk=
+      X-Amz-Request-Id:
+      - 99C1F4932839D130
+      Date:
+      - Mon, 26 Mar 2018 16:29:03 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:29:02 GMT
+- request:
+    method: head
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T162902Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=68979a32cfd9187db49a11d299facae2f900f3599a9539a56b575a173dcfabf1
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Amz-Request-Id:
+      - 2ACC68FB0E4773C9
+      X-Amz-Id-2:
+      - 0YWZHUZUG3K5gNK8Q0wVmW63jQyQcztI7xY9k34IM5f6lQRN4N0/SwkIwd2M2lsJ4TpTeDVl3NY=
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Mon, 26 Mar 2018 16:29:02 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:29:02 GMT
+- request:
+    method: head
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T162902Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=68979a32cfd9187db49a11d299facae2f900f3599a9539a56b575a173dcfabf1
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Amz-Request-Id:
+      - EABFD2B48340E9A6
+      X-Amz-Id-2:
+      - HRqfcTNRh3lzoUkoRomLNbcOtvd4HqkPrXxRWBRvQoUuqUesLNXUyGhDlSn/YiPGdcXM95jg1Bc=
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Mon, 26 Mar 2018 16:29:02 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:29:03 GMT
+- request:
+    method: head
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T162902Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=68979a32cfd9187db49a11d299facae2f900f3599a9539a56b575a173dcfabf1
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Amz-Request-Id:
+      - 1FB5558473656672
+      X-Amz-Id-2:
+      - oYAe0fhYqpkaP42XEfr/f2d45vMrl0JnDENgIxRTnpN26lAUCotwS2oFEwCsf1AL+l0QwHhRhX4=
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Mon, 26 Mar 2018 16:29:02 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:29:03 GMT
+- request:
+    method: head
+    uri: https://myapp-backup-test.s3-ap-southeast-1.amazonaws.com/my_test_app/www/daily/static_files.daily.2018-03-26T1600.tgz
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - fog-core/1.45.0
+      X-Amz-Date:
+      - 20180326T162902Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDNLKN23314FSD1234/20180326/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=68979a32cfd9187db49a11d299facae2f900f3599a9539a56b575a173dcfabf1
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Amz-Request-Id:
+      - 5678B8252588199E
+      X-Amz-Id-2:
+      - QM1VEKDDNBQn4nM3lV38a4RwwQ+RMbRgD8M/M0NiI66MiasFpf6NdEkk3C39map9d1NYHWj7WXI=
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Mon, 26 Mar 2018 16:29:02 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    http_version: 
+  recorded_at: Mon, 26 Mar 2018 16:29:03 GMT
+recorded_with: VCR 4.0.0

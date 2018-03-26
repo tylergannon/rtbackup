@@ -1,0 +1,66 @@
+###############################################################################
+# 
+#                  Sample Backup Configuration
+# 
+# 
+# 
+###############################################################################
+
+logging:
+    # DEBUG, INFO, WARN, ERROR, FATAL
+    log_threshold: 'DEBUG'
+    # If set to true, logs to STDOUT and all the subsequent settings in this
+    # section will be ignored.
+    use_stdout: true
+    logfile_path: '/tmp/server_backup.log'
+    keep_files: 5
+    file_size:
+        megabytes: 1
+
+# incremental backups are all in increments since the last incremental or since
+# the last full backup.
+# Everything other than incremental backups are FULL backups.
+retention:
+	incremental:
+		# Each time you run incremental backup, it will finish by deleting all
+		# incremental backups younger than seven days.
+		# Note that if you wanted to get exact about it, you could also say
+		# "hours: 144", and it would delete everything younger than 6 days, 1 hour.
+		hours: 144
+	daily:
+		# Each time you run daily backup, it will finish by deleting dailies
+		# that are younger than seven days.
+		days: 6
+	weekly:
+		weeks: 3
+	monthly:
+		months: 11
+
+mysql:
+	# Database to back up
+	database:
+	# MySql credentials
+	user: root
+	password:
+	# Path (with trailing slash) to mysql commands e.g. mysqldump
+	bin_path: /usr/local/mysql/bin/
+	# If you are using MySql binary logging:
+	# Path to the binary logs, should match the log_bin option in your my.cnf.
+	# Comment out if you are not using mysql binary logging
+	bin_log: /var/lib/mysql/binlog/mysql-bin
+
+s3:
+	# S3 credentials
+	access_key_id: asdflaksjdflakjsdflakjs
+	secret_access_key: aslkdjfalksjdfalksjdf;lkj;lkajsdfauisdhf
+	# Bucket in which to store your backups
+	bucket: your-backup-bucket
+
+	# The prefix under which to store and retrieve backups for this server
+	#  e.g. my_app_name
+	prefix: my_test_app
+
+	# AWS region your bucket lives in.
+	# (I suspect you only need to specify this when your 'location' is in a different region.)
+	region: ap-southeast-1
+	

@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+lib_dir = File.join(File.dirname(__FILE__), '..', 'lib')
+$LOAD_PATH.unshift lib_dir if File.directory?(lib_dir)
+
+require 'server_backups'
+require 'main'
+require 'tmpdir'
+
+Main do
+    option 'config', 'c' do
+        argument :required
+        description 'load configuration from YAML file'
+        defaults '~/.backup_conf.yml'
+    end
+    argument 'backup_type' do
+        validate { |command| %w[ incremental daily weekly monthly ].include? command }
+        description 'specifies the backup type to perform [incremental | daily | weekly | monthly]'
+    end
+    def run
+        website_backup = Thread.new do
+            Dir.mktmpdir do |tmp_dir|
+                ServerBackups::WebsiteBackup.send(params['backup_type'].value,
+                                                  params['config'].value, tmp_dir).run()
+            end
+        end
+        website_backup.join()
+        exit_success!
+    end
+end

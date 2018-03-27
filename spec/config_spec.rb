@@ -25,7 +25,7 @@ RSpec.describe ServerBackups::Config do
 
     describe "Logging" do
         it " should not be configured to use STDOUT" do
-            pending "Turn this on later"
+            # pending "Turn this on later"
             expect(config.log_device).to eq("/tmp/server_backup.log")
         end
     end

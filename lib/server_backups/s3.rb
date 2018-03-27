@@ -1,3 +1,5 @@
+require 'aws-sdk-s3'
+
 module ServerBackups
     class S3
         PROVIDER = 'AWS'.freeze
@@ -7,66 +9,53 @@ module ServerBackups
             @logger = config.logger
         end
 
-        def s3
-            @s3 ||= begin
-                s = Fog::Storage.new(
-                    :provider              => PROVIDER,
-                    :aws_secret_access_key => @config.secret_access_key,
-                    :aws_access_key_id     => @config.access_key_id,
-                    :region                => @config.region
+        def client
+            @client ||= begin
+                Aws.config[:credentials] = Aws::Credentials.new(
+                    config.access_key_id, config.secret_access_key
                 )
-                logger.info "Connected to S3"
-                s
+                Aws::S3::Client.new region: config.region
             end
         end
 
         def bucket
-            @bucket ||= begin
-                d = s3.directories.get @config.bucket
-                raise "S3 bucket #{@config.bucket} not found" unless d  # create bucket instead (n.b. region/location)?
-
-                logger.info "s3: opened bucket #{@config.bucket}"
-                d
-            end
+            @bucket ||= Aws::S3::Bucket.new(config.bucket, client: client)
         end
 
         def delete_files_not_newer_than(key, age)
-            bucket.files.all(prefix: key).each do |file|
+            bucket.objects(prefix: key).each do |file|
                 unless file.last_modified.to_datetime > age
-                    file.destroy
+                    destroy key, true
                 end
             end
         end
 
         def exists?(path)
-            !!bucket.files.head(path)
+            logger.debug "Exists? #{config.bucket}  #{path}"
+            !bucket.objects(prefix: path).to_a.empty?
+            # !!client.head_object(bucket: config.bucket, key: path)
         end
 
-        def destroy(key)
-            return unless exists?(key)
-            bucket.files.destroy(key)
+        def destroy(key, existence_known=false)
+            return unless existence_known || exists?(key)
+            client.delete_object bucket: config.bucket, key: key
         end
-
+        
         def save(local_file_name, s3_key)
             if s3_key[-1] == '/'
                 full_path = File.join(s3_key, File.basename(local_file_name))
             else
                 full_path = s3_key
             end
-            s3.sync_clock
-            unless exists?(full_path)
-                s3_file = bucket.files.create(
-                    :key    => full_path,
-                    :body   => File.open(local_file_name, 'rb'),
-                    :public => false,
-                    :options=> {
-                        'Content-MD5' => md5of(local_file_name),
-                        'x-amz-storage-class' => 'STANDARD_IA'
-                    }
-                )
-                logger.info "s3: pushed #{local_file_name} to #{s3_key}"
-                s3_file
-            end
+
+            return if exists?(full_path)
+            file = Aws::S3::Object.new(config.bucket, full_path, client: client)
+            file.put(
+                acl: 'private',
+                body: File.open(local_file_name, 'rb'),
+                content_md5: md5of(local_file_name),
+                storage_class: 'STANDARD_IA'
+            )
         end
       
 

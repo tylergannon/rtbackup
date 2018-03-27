@@ -23,21 +23,20 @@ Gem::Specification.new do |spec|
       "public gem pushes."
   end
 
-  spec.add_dependency "fog-aws", "~> 2.0.1"
-  spec.add_dependency "main", "~> 6.2.2"
-  spec.add_dependency "activesupport", ">= 5.1.5"
-  spec.add_dependency "mime-types", ">= 3.1"
+  spec.add_dependency "main", "~> 6.2"
+  spec.add_dependency "activesupport", "~> 5.1"
+  spec.add_dependency "aws-sdk-s3", "~> 1.8"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
-  spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.bindir        = "bin"
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", ">= 1.16"
-  spec.add_development_dependency "rake", ">= 10.5"
-  spec.add_development_dependency "rspec", ">= 3.0"
-  spec.add_development_dependency "vcr", ">= 4.0.0"
-  spec.add_development_dependency "webmock", ">= 3.3.0"
+  spec.add_development_dependency "bundler", "~> 1.16"
+  spec.add_development_dependency "rake", "~> 10.5"
+  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "vcr", "~> 4.0"
+  spec.add_development_dependency "webmock", "~> 3.3"
 end

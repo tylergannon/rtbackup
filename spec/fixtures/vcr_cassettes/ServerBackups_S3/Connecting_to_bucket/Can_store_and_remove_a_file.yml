@@ -741,4 +741,363 @@ http_interactions:
       string: ''
     http_version: 
   recorded_at: Mon, 26 Mar 2018 16:15:28 GMT
+- request:
+    method: head
+    uri: https://tyler-backup-test.s3.ap-southeast-1.amazonaws.com//some/prefix/little_file.txt
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.17.1 ruby/2.3.1 x86_64-darwin17 aws-sdk-s3/1.8.2
+      X-Amz-Date:
+      - 20180327T164441Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDFKJASDFLASDFLKJD/20180327/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;user-agent;x-amz-content-sha256;x-amz-date, Signature=da6590205462ef732ea49b5255085e8bdb48045827b02f3541162a966cea225b
+      Content-Length:
+      - '0'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Amz-Request-Id:
+      - 0D307BBF1D4EC193
+      X-Amz-Id-2:
+      - mh4tfRze+NBWraLG4/BWetf+DEctUH1v1owBCZxg3KSfDAD9AS3Ry12dTZ/E6bT16AuYzDi+qVQ=
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 27 Mar 2018 16:44:41 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Tue, 27 Mar 2018 16:44:41 GMT
+- request:
+    method: get
+    uri: https://tyler-backup-test.s3.ap-southeast-1.amazonaws.com/?encoding-type=url&prefix=/some/prefix/little_file.txt
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.17.1 ruby/2.3.1 x86_64-darwin17 aws-sdk-s3/1.8.2
+      Host:
+      - tyler-backup-test.s3.ap-southeast-1.amazonaws.com
+      X-Amz-Date:
+      - 20180327T170725Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDFKJASDFLASDFLKJD/20180327/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;user-agent;x-amz-content-sha256;x-amz-date, Signature=150925cf1c79bef5904603b29da3b6d33b47e14808afc4fb9e120d2206b5c577
+      Content-Length:
+      - '0'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - wJKPxPId2BHHYEe4YbEU9arDZVkszA9+piHt38ws/wXc/dMTQJiTwcEGHZk2D9bpcGFZhCv8fZE=
+      X-Amz-Request-Id:
+      - AB947084EA8826B7
+      Date:
+      - Tue, 27 Mar 2018 17:07:26 GMT
+      X-Amz-Bucket-Region:
+      - ap-southeast-1
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>tyler-backup-test</Name><Prefix>/some/prefix/little_file.txt</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><EncodingType>url</EncodingType><IsTruncated>false</IsTruncated></ListBucketResult>
+    http_version: 
+  recorded_at: Tue, 27 Mar 2018 17:07:25 GMT
+- request:
+    method: put
+    uri: https://tyler-backup-test.s3.ap-southeast-1.amazonaws.com//some/prefix/little_file.txt
+    body:
+      encoding: ASCII-8BIT
+      string: 'It''s just a little file, ya know?  Nothing to it.
+
+'
+    headers:
+      Content-Type:
+      - ''
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.17.1 ruby/2.3.1 x86_64-darwin17 aws-sdk-s3/1.8.2
+      X-Amz-Acl:
+      - private
+      Content-Md5:
+      - KJuMK47rj7rIY5UG9ykzuw==
+      X-Amz-Storage-Class:
+      - STANDARD_IA
+      Expect:
+      - 100-continue
+      Host:
+      - tyler-backup-test.s3.ap-southeast-1.amazonaws.com
+      X-Amz-Date:
+      - 20180327T170725Z
+      X-Amz-Content-Sha256:
+      - ae8e5b95070a475a9d09dfd84fedaf47b27e13f1fdc348acba9f3e52713d67d1
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDFKJASDFLASDFLKJD/20180327/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=content-md5;expect;host;user-agent;x-amz-acl;x-amz-content-sha256;x-amz-date;x-amz-storage-class,
+        Signature=bd33e6cbefcf9f81f11d64611a9b80530a50e59c99e5ef5c80e1c1adf697ac71
+      Content-Length:
+      - '50'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - fzyt3xWPCeyD3BAyMRh7SpHMmpIQSmtaWGZae/9jgEhTu2HaB9XSYSAaMszrYDTYU61otEBh3aQ=
+      X-Amz-Request-Id:
+      - 371782E0DD2BFE1C
+      Date:
+      - Tue, 27 Mar 2018 17:07:27 GMT
+      Etag:
+      - '"289b8c2b8eeb8fbac8639506f72933bb"'
+      X-Amz-Storage-Class:
+      - STANDARD_IA
+      Content-Length:
+      - '0'
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Tue, 27 Mar 2018 17:07:26 GMT
+- request:
+    method: get
+    uri: https://tyler-backup-test.s3.ap-southeast-1.amazonaws.com/?encoding-type=url&prefix=/some/prefix/little_file.txt
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.17.1 ruby/2.3.1 x86_64-darwin17 aws-sdk-s3/1.8.2
+      Host:
+      - tyler-backup-test.s3.ap-southeast-1.amazonaws.com
+      X-Amz-Date:
+      - 20180327T170726Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDFKJASDFLASDFLKJD/20180327/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;user-agent;x-amz-content-sha256;x-amz-date, Signature=9929c1a8db3b4b28cfea98c58028ecbd43ffea40271a44e75f211e3e71aa5edc
+      Content-Length:
+      - '0'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - BGK9mAX/JNzXfn3wUEDGzR3PkfkIY/2Hj2HrTMWjT0MWS2oweL3/qTKhfVdxvnKEaHz6jIPXXo4=
+      X-Amz-Request-Id:
+      - F90B341387C04A2F
+      Date:
+      - Tue, 27 Mar 2018 17:07:27 GMT
+      X-Amz-Bucket-Region:
+      - ap-southeast-1
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>tyler-backup-test</Name><Prefix>/some/prefix/little_file.txt</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><EncodingType>url</EncodingType><IsTruncated>false</IsTruncated><Contents><Key>/some/prefix/little_file.txt</Key><LastModified>2018-03-27T17:07:27.000Z</LastModified><ETag>&quot;289b8c2b8eeb8fbac8639506f72933bb&quot;</ETag><Size>50</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents></ListBucketResult>
+    http_version: 
+  recorded_at: Tue, 27 Mar 2018 17:07:27 GMT
+- request:
+    method: get
+    uri: https://tyler-backup-test.s3.ap-southeast-1.amazonaws.com/?encoding-type=url&prefix=/some/prefix/little_file.txt
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.17.1 ruby/2.3.1 x86_64-darwin17 aws-sdk-s3/1.8.2
+      Host:
+      - tyler-backup-test.s3.ap-southeast-1.amazonaws.com
+      X-Amz-Date:
+      - 20180327T170727Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDFKJASDFLASDFLKJD/20180327/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;user-agent;x-amz-content-sha256;x-amz-date, Signature=5c0901b8d660a8eb94f076cded0e95d908e6af4f41084332f61b4c38a7244d00
+      Content-Length:
+      - '0'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - 81k1ArM7PNbMAzLmLRf1HL0Y0y5/T1fYfmuBzt5duAGmsKWiihZygWw7h636vw0NXNuTVnygwFk=
+      X-Amz-Request-Id:
+      - A5F2FC40851F07E9
+      Date:
+      - Tue, 27 Mar 2018 17:07:28 GMT
+      X-Amz-Bucket-Region:
+      - ap-southeast-1
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>tyler-backup-test</Name><Prefix>/some/prefix/little_file.txt</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><EncodingType>url</EncodingType><IsTruncated>false</IsTruncated><Contents><Key>/some/prefix/little_file.txt</Key><LastModified>2018-03-27T17:07:27.000Z</LastModified><ETag>&quot;289b8c2b8eeb8fbac8639506f72933bb&quot;</ETag><Size>50</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents></ListBucketResult>
+    http_version: 
+  recorded_at: Tue, 27 Mar 2018 17:07:27 GMT
+- request:
+    method: delete
+    uri: https://tyler-backup-test.s3.ap-southeast-1.amazonaws.com//some/prefix/little_file.txt
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.17.1 ruby/2.3.1 x86_64-darwin17 aws-sdk-s3/1.8.2
+      Host:
+      - tyler-backup-test.s3.ap-southeast-1.amazonaws.com
+      X-Amz-Date:
+      - 20180327T170727Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDFKJASDFLASDFLKJD/20180327/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;user-agent;x-amz-content-sha256;x-amz-date, Signature=e9a1e3a3ac2f649f2cca310595e0eb75817972eb449338d1a1e0997002c629b7
+      Content-Length:
+      - '0'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      X-Amz-Id-2:
+      - GbwMHSszRqzTAbuynRGZdXmYAWkB7pQ4gFvPbCb6+zriwQAdGScWrChuPSjwtfI+sdForFkCZa0=
+      X-Amz-Request-Id:
+      - BB5C8E680B6975DF
+      Date:
+      - Tue, 27 Mar 2018 17:07:28 GMT
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Tue, 27 Mar 2018 17:07:27 GMT
+- request:
+    method: get
+    uri: https://tyler-backup-test.s3.ap-southeast-1.amazonaws.com/?encoding-type=url&prefix=/some/prefix/little_file.txt
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.17.1 ruby/2.3.1 x86_64-darwin17 aws-sdk-s3/1.8.2
+      Host:
+      - tyler-backup-test.s3.ap-southeast-1.amazonaws.com
+      X-Amz-Date:
+      - 20180327T170727Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDFKJASDFLASDFLKJD/20180327/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;user-agent;x-amz-content-sha256;x-amz-date, Signature=5c0901b8d660a8eb94f076cded0e95d908e6af4f41084332f61b4c38a7244d00
+      Content-Length:
+      - '0'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - x5geJuKTGOGwrsPKvJ/ZKEIznLI5dlNMIZJsubN9DrC2lLO5AnLN0roIWUgElFwGVRDI4UNp3nE=
+      X-Amz-Request-Id:
+      - 6ABEC985F6F5CF4B
+      Date:
+      - Tue, 27 Mar 2018 17:07:29 GMT
+      X-Amz-Bucket-Region:
+      - ap-southeast-1
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>tyler-backup-test</Name><Prefix>/some/prefix/little_file.txt</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><EncodingType>url</EncodingType><IsTruncated>false</IsTruncated></ListBucketResult>
+    http_version: 
+  recorded_at: Tue, 27 Mar 2018 17:07:28 GMT
 recorded_with: VCR 4.0.0

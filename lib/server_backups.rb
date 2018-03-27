@@ -3,8 +3,6 @@ require 'active_support/core_ext'
 
 Time.zone = 'UTC'
 
-
-require 'fog/aws'
 require 'server_backups/version'
 require 'server_backups/errors'
 require 'server_backups/config'

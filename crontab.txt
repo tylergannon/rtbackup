@@ -1,0 +1,4 @@
+5 0 1 * * server_backup monthly
+5 0 2-31 * 0 server_backup weekly
+5 0 2-31 * 1-6 server_backup daily
+5 1-23 * * * server_backup incremental

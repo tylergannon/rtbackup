@@ -3,7 +3,7 @@ logging:
     log_threshold: 'DEBUG'
     # If set to true, logs to STDOUT and all the subsequent settings in this
     # section will be ignored.
-    use_stdout: true
+    use_stdout: false
     logfile_path: '/tmp/server_backup.log'
     keep_files: 1
     file_size:
@@ -35,25 +35,11 @@ mysql:
   bin_log: /var/tmp/mysql-bin
 
 s3:
-  # # S3 credentials
-  # access_key_id: SDFASDFASDGASDFASDFASD
-  # secret_access_key: asdfASDFASDkjlkj23lkjsdlkj234lkjsdflkjasdlkj2sdfj32234sd3
-  # # Bucket in which to store your backups
-  # bucket: my-backup-test
-
-  # # The prefix under which to store and retrieve backups for this server
-  # #  e.g. my_app_name
-  # prefix: my_test_app
-
-  # # AWS region your bucket lives in.
-  # # (I suspect you only need to specify this when your 'location' is in a different region.)
-  # region: ap-southeast-1
-  
   # S3 credentials
-  access_key_id: ASDNLKN23314FSD1234
+  access_key_id: ASDFKJASDFLASDFLKJD
   secret_access_key: asdfASDFASDkjlkj23lkjsdlkj234lkjsdflkjasdlkj2sdfj32234sd3
-  # Bucket in which to store your backups
-  bucket: myapp-backup-test
+  # # Bucket in which to store your backups
+  bucket: tyler-backup-test
 
   # The prefix under which to store and retrieve backups for this server
   #  e.g. my_app_name

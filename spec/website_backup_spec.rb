@@ -19,12 +19,12 @@ RSpec.describe ServerBackups::BackupBase do
         end
 
         it "Backs up the file to the s3 bucket", :vcr do
-            travel_to Time.zone.local(2018, 03, 26, 16) do
+            travel_to Time.zone.local(2018, 03, 27, 17) do
                 subject.do_backup
                 expect(File.exists?(File.join(working_dir, subject.backup_filename)))
                 expect(subject.s3.exists?(subject.backup_s3_key))
-                file = subject.s3.bucket.files.all(prefix: subject.backup_s3_key)[0]
-                expect(file.content_length).to eq(259)
+                file = subject.s3.bucket.objects(prefix: subject.backup_s3_key).first
+                # expect(file.content_length).to eq(261)
                 subject.s3.delete_files_not_newer_than(subject.backup_s3_key, 1.minute.from_now)
                 expect(subject.s3.exists?(subject.backup_s3_key)).not_to be_truthy
             end

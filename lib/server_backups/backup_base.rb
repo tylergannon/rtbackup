@@ -18,8 +18,6 @@ module ServerBackups
             backup_type == :incremental
         end
 
-        private_class_method :new
-
         class << self
             def daily(config_file, working_directory)
                 new(config_file, working_directory, :daily)

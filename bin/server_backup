@@ -38,6 +38,7 @@ Main do
 
     def run
         website_backup = Thread.new do
+            Time.zone = 'UTC'
             Dir.mktmpdir do |tmp_dir|
                 ServerBackups::WebsiteBackup.send(params['backup_type'].value,
                                                   params['config'].value, tmp_dir).do_backup()
@@ -45,6 +46,7 @@ Main do
         end
 
         database_backup = Thread.new do
+            Time.zone = 'UTC'
             Dir.mktmpdir do |tmp_dir|
                 ServerBackups::MysqlBackup.send(
                     params['backup_type'].value,

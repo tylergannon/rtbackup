@@ -40,7 +40,7 @@ module ServerBackups
                 new(config_file, working_directory, :monthly, database_name)
             end
             def incremental(config_file, working_directory, database_name)
-                new(config_file, working_directory, :incremental, database_name)
+                MysqlIncrementalBackup.new(config_file, working_directory, database_name)
             end
         end
 

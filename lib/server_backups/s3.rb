@@ -59,7 +59,10 @@ module ServerBackups
                     :key    => full_path,
                     :body   => File.open(local_file_name, 'rb'),
                     :public => false,
-                    :options=> {'Content-MD5' => md5of(local_file_name)}
+                    :options=> {
+                        'Content-MD5' => md5of(local_file_name),
+                        'x-amz-storage-class' => 'STANDARD_IA'
+                    }
                 )
                 logger.info "s3: pushed #{local_file_name} to #{s3_key}"
                 s3_file

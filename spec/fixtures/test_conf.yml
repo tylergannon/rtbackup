@@ -3,7 +3,7 @@ logging:
     log_threshold: 'DEBUG'
     # If set to true, logs to STDOUT and all the subsequent settings in this
     # section will be ignored.
-    use_stdout: false
+    use_stdout: true
     logfile_path: '/tmp/server_backup.log'
     keep_files: 1
     file_size:
@@ -28,11 +28,11 @@ mysql:
   user: root
   password:
   # Path (with trailing slash) to mysql commands e.g. mysqldump
-  bin_path: /usr/local/mysql/bin/
+  bin_path: /usr/local/bin/
   # If you are using MySql binary logging:
   # Path to the binary logs, should match the log_bin option in your my.cnf.
   # Comment out if you are not using mysql binary logging
-  bin_log: /var/lib/mysql/binlog/mysql-bin
+  bin_log: /var/tmp/mysql-bin
 
 s3:
   # # S3 credentials

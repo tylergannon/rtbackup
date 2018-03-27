@@ -15,12 +15,12 @@ RSpec.describe ServerBackups::BackupBase do
             end
         end
         it "Has the correct storage prefix" do
-            expect(subject.s3_prefix).to eq("my_test_app/www/daily/")
+            expect(subject.s3_prefix).to eq("my_test_app/website_backup/daily/")
         end
 
         it "Backs up the file to the s3 bucket", :vcr do
             travel_to Time.zone.local(2018, 03, 26, 16) do
-                subject.run
+                subject.do_backup
                 expect(File.exists?(File.join(working_dir, subject.backup_filename)))
                 expect(subject.s3.exists?(subject.backup_s3_key))
                 file = subject.s3.bucket.files.all(prefix: subject.backup_s3_key)[0]

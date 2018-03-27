@@ -6,13 +6,13 @@ require 'logger'
 module ServerBackups
     class Config
 
-        attr_reader :logger, :logging
+        attr_reader :logger, :logging, :config_file
 
         DEFAULT_LOGFILE_SIZE = 1.megabytes
         DEFAULT_LOGFILE_COUNT = 7
 
         def initialize(config_file = nil)
-            config_file = config_file || default_config_file
+            @config_file = config_file || default_config_file
             @config = YAML.load_file File.expand_path(config_file)
             @logging = @config["logging"]
             @logger = Logger.new(log_device, logfile_count, logfile_size)
@@ -97,6 +97,17 @@ module ServerBackups
 
         def bin_log
             mysql['bin_log']
+        end
+
+        MYSQLDUMP = 'mysqldump'.freeze
+        MYSQL = 'mysql'.freeze
+
+        def mysqldump_bin
+            File.join(bin_path, MYSQLDUMP)
+        end
+
+        def mysql_bin
+            File.join(bin_path, MYSQL)
         end
 
         #

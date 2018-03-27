@@ -13,18 +13,46 @@ Main do
         description 'load configuration from YAML file'
         defaults '~/.backup_conf.yml'
     end
+
+    option 'database', 'd' do
+        argument :required
+        description 'Which database to back up, defaults to all non-system databases.'
+        defaults 'all'
+    end
+
+    option 'db_only', 'b' do
+        argument :optional
+        description "Only work with database(s)."
+    end
+
+    option 'files_only', 'f' do
+        argument :optional
+        description "Only work with files."
+    end
+
     argument 'backup_type' do
-        validate { |command| %w[ incremental daily weekly monthly ].include? command }
+        cast :symbol
+        validate { |command| ServerBackups::BackupBase::BACKUP_TYPES.include? command }
         description 'specifies the backup type to perform [incremental | daily | weekly | monthly]'
     end
+
     def run
         website_backup = Thread.new do
             Dir.mktmpdir do |tmp_dir|
                 ServerBackups::WebsiteBackup.send(params['backup_type'].value,
-                                                  params['config'].value, tmp_dir).run()
+                                                  params['config'].value, tmp_dir).do_backup()
+            end unless params['db_only'].value == true
+        end
+
+        database_backup = Thread.new do
+            Dir.mktmpdir do |tmp_dir|
+                ServerBackups::MysqlBackup.send(
+                    params['backup_type'].value,
+                    params['config'].value, tmp_dir, params['database'].value).do_backup()
             end
         end
-        website_backup.join()
+        
+        [website_backup, database_backup].compact.each {|thread| thread.join}
         exit_success!
     end
 end

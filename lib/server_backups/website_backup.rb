@@ -27,9 +27,12 @@ module ServerBackups
             end
         end
 
+        def backup_path
+            File.join(self.working_directory, backup_filename)
+        end
+
         def backup_filename
-            File.join(self.working_directory, 
-                      "static_files.#{self.backup_type}.#{self.timestamp}.tgz")
+            "#{self.class.name.demodulize.underscore}.#{self.backup_type}.#{self.timestamp}.tgz"
         end
     
         def take_backup
@@ -42,8 +45,8 @@ module ServerBackups
                 logger.error("Received #{$?.inspect} from tar command.")
                 raise StandardError("Fooblaz")
             end
-            unless File.exists?(backup_filename)
-                raise StandardError("Didn't create backup file.")
+            unless File.exists?(backup_path)
+                raise StandardError.new("Didn't create backup file.")
             end
             logger.debug "Backup exited with #{$?.inspect}"
         end
@@ -51,7 +54,7 @@ module ServerBackups
         def create_archive_command
             "tar --create --listed-incremental=#{SNAPSHOT_PATH} --gzip --no-check-device " +
             "--level=0 " +
-            "--file=#{self.backup_filename} #{config.web_root}"
+            "--file=#{self.backup_path} #{config.web_root}"
         end
 
         class Incremental

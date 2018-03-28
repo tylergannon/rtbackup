@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_support'
 require 'active_support/core_ext'
 
@@ -11,7 +13,6 @@ require 'server_backups/backup_base'
 require 'server_backups/website_backup'
 require 'server_backups/mysql_backup'
 require 'server_backups/mysql_incremental_backup'
-
 
 module ServerBackups
 end

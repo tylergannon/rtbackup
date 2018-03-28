@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 lib_dir = File.join(File.dirname(__FILE__), '..', 'lib')
 $LOAD_PATH.unshift lib_dir if File.directory?(lib_dir)
@@ -6,6 +7,17 @@ $LOAD_PATH.unshift lib_dir if File.directory?(lib_dir)
 require 'server_backups'
 require 'main'
 require 'tmpdir'
+
+def backup_thread(cancel_param)
+    Thread.new do
+        Time.zone = 'UTC'
+        unless params[cancel_param].value == true
+            Dir.mktmpdir do |tmp_dir|
+                yield tmp_dir
+            end
+        end
+    end
+end
 
 Main do
     option 'config', 'c' do
@@ -22,12 +34,12 @@ Main do
 
     option 'db_only', 'b' do
         argument :optional
-        description "Only work with database(s)."
+        description 'Only work with database(s).'
     end
 
     option 'files_only', 'f' do
         argument :optional
-        description "Only work with files."
+        description 'Only work with files.'
     end
 
     argument 'backup_type' do
@@ -37,24 +49,17 @@ Main do
     end
 
     def run
-        website_backup = Thread.new do
-            Time.zone = 'UTC'
-            Dir.mktmpdir do |tmp_dir|
-                ServerBackups::WebsiteBackup.send(params['backup_type'].value,
-                                                  params['config'].value, tmp_dir).do_backup()
-            end unless params['db_only'].value == true
+        website_backup = backup_thread('db_only') do |tmp_dir|
+            ServerBackups::WebsiteBackup.send(params['backup_type'].value,
+                                              params['config'].value, tmp_dir).do_backup
         end
-
-        database_backup = Thread.new do
-            Time.zone = 'UTC'
-            Dir.mktmpdir do |tmp_dir|
-                ServerBackups::MysqlBackup.send(
-                    params['backup_type'].value,
-                    params['config'].value, tmp_dir, params['database'].value).do_backup()
-            end
+        database_backup = backup_thread('files_only') do |tmp_dir|
+            ServerBackups::MysqlBackup.send(
+                params['backup_type'].value,
+                params['config'].value, tmp_dir, params['database'].value
+            ).do_backup
         end
-        
-        [website_backup, database_backup].compact.each {|thread| thread.join}
+        [website_backup, database_backup].compact.each(&:join)
         exit_success!
     end
 end

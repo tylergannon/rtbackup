@@ -34,6 +34,15 @@ log_bin                 = /var/log/mysql/mysql-bin.log   #  Or your favorite loc
 
 ```
 
+### Grant user read access to mysql binary logs and also to your web root
+
+```bash
+# Make sure you know what the group ownership is, for your web root.
+sudo usermod -a -G www-data ubuntu
+sudo usermod -a -G mysql ubuntu
+```
+
+
 ## Usage
 
 ### Take your backups.

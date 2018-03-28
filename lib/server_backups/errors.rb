@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ServerBackups
     class BackupCreationError < StandardError
         attr_reader :backup_class, :backup_type

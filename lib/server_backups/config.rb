@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # lifted from https://github.com/airblade/mys3ql/blob/master/lib/mys3ql/config.rb
 
 require 'yaml'
@@ -5,7 +7,6 @@ require 'logger'
 
 module ServerBackups
     class Config
-
         attr_reader :logger, :logging, :config_file
 
         DEFAULT_LOGFILE_SIZE = 1.megabytes
@@ -14,29 +15,29 @@ module ServerBackups
         def initialize(config_file = nil)
             @config_file = config_file || default_config_file
             @config = YAML.load_file File.expand_path(config_file)
-            @logging = @config["logging"]
+            @logging = @config['logging']
             @logger = Logger.new(log_device, logfile_count, logfile_size)
         rescue Errno::ENOENT
-            $stderr.puts "missing config file #{config_file}"
+            warn "missing config file #{config_file}"
             exit 1
         end
 
         #
         # General
         #
-        FILE_LOCATION = '/var/www'.freeze
+        FILE_LOCATION = '/var/www'
 
         def web_root
-            @config["file_location"] || FILE_LOCATION
+            @config['file_location'] || FILE_LOCATION
         end
 
         def log_device
-            logging["use_stdout"] == true ? STDOUT : logging["logfile_path"]
+            logging['use_stdout'] == true ? STDOUT : logging['logfile_path']
         end
 
         def logfile_size
-            if logging["file_size"]
-                unit, quantity = @logging["file_size"].first
+            if logging['file_size']
+                unit, quantity = @logging['file_size'].first
                 quantity = quantity.to_i
                 quantity.send(unit)
             else
@@ -45,15 +46,15 @@ module ServerBackups
         end
 
         def logfile_count
-            if logging["keep_files"]
-                logging["keep_files"].to_i
+            if logging['keep_files']
+                logging['keep_files'].to_i
             else
                 DEFAULT_LOGFILE_COUNT
             end
         end
 
         def get_retention_threshold(backup_type)
-            interval, quantity = @config["retention"][backup_type.to_s].first
+            interval, quantity = @config['retention'][backup_type.to_s].first
             quantity = quantity.to_i + 1
             quantity.send(interval).ago
         end
@@ -73,7 +74,6 @@ module ServerBackups
         def retain_weeklies_after
             get_retention_threshold(:weekly)
         end
-
 
         #
         # MySQL
@@ -99,8 +99,8 @@ module ServerBackups
             mysql['bin_log']
         end
 
-        MYSQLDUMP = 'mysqldump'.freeze
-        MYSQL = 'mysql'.freeze
+        MYSQLDUMP = 'mysqldump'
+        MYSQL = 'mysql'
 
         def mysqldump_bin
             File.join(bin_path, MYSQLDUMP)
@@ -145,7 +145,7 @@ module ServerBackups
         end
 
         def default_config_file
-            File.join "#{ENV['HOME']}", '.mys3ql'
+            File.join (ENV['HOME']).to_s, '.mys3ql'
         end
     end
 end

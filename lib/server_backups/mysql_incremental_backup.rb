@@ -43,7 +43,7 @@ module ServerBackups
         end
 
         def each_remote_bin_log(&block)
-            s3.bucket.files.all(prefix: s3_prefix).each do |file|
+            s3.bucket.objects(prefix: s3_prefix).each do |file|
                 yield **parse_remote_binlog_filename(file)
             end
         end

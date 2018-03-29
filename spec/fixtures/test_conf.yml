@@ -10,6 +10,7 @@ logging:
         kilobytes: 100
 
 file_location: 'spec/fixtures/www'
+time_zone: 'Singapore'
 
 retention:
   incremental:
@@ -36,10 +37,11 @@ mysql:
 
 s3:
   # S3 credentials
-  access_key_id: ASDFKJASDFLASDFLKJD
-  secret_access_key: asdfASDFASDkjlkj23lkjsdlkj234lkjsdflkjasdlkj2sdfj32234sd3
+  access_key_id: ASDFASDFASDFASDFAS
+  secret_access_key: asdfasdfasdfasdfasdfasdfasdfasdfasdfffff
+  # Bucket in which to store your backups
   # # Bucket in which to store your backups
-  bucket: tyler-backup-test
+  bucket: myapp-backup-test
 
   # The prefix under which to store and retrieve backups for this server
   #  e.g. my_app_name

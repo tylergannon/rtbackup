@@ -743,7 +743,7 @@ http_interactions:
   recorded_at: Mon, 26 Mar 2018 16:15:28 GMT
 - request:
     method: head
-    uri: https://tyler-backup-test.s3.ap-southeast-1.amazonaws.com//some/prefix/little_file.txt
+    uri: https://myapp-backup-test.s3.ap-southeast-1.amazonaws.com//some/prefix/little_file.txt
     body:
       encoding: ASCII-8BIT
       string: ''
@@ -789,7 +789,7 @@ http_interactions:
   recorded_at: Tue, 27 Mar 2018 16:44:41 GMT
 - request:
     method: get
-    uri: https://tyler-backup-test.s3.ap-southeast-1.amazonaws.com/?encoding-type=url&prefix=/some/prefix/little_file.txt
+    uri: https://myapp-backup-test.s3.ap-southeast-1.amazonaws.com/?encoding-type=url&prefix=/some/prefix/little_file.txt
     body:
       encoding: ASCII-8BIT
       string: ''
@@ -801,7 +801,7 @@ http_interactions:
       User-Agent:
       - aws-sdk-ruby3/3.17.1 ruby/2.3.1 x86_64-darwin17 aws-sdk-s3/1.8.2
       Host:
-      - tyler-backup-test.s3.ap-southeast-1.amazonaws.com
+      - myapp-backup-test.s3.ap-southeast-1.amazonaws.com
       X-Amz-Date:
       - 20180327T170725Z
       X-Amz-Content-Sha256:
@@ -836,12 +836,12 @@ http_interactions:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" encoding="UTF-8"?>
-        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>tyler-backup-test</Name><Prefix>/some/prefix/little_file.txt</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><EncodingType>url</EncodingType><IsTruncated>false</IsTruncated></ListBucketResult>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>myapp-backup-test</Name><Prefix>/some/prefix/little_file.txt</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><EncodingType>url</EncodingType><IsTruncated>false</IsTruncated></ListBucketResult>
     http_version: 
   recorded_at: Tue, 27 Mar 2018 17:07:25 GMT
 - request:
     method: put
-    uri: https://tyler-backup-test.s3.ap-southeast-1.amazonaws.com//some/prefix/little_file.txt
+    uri: https://myapp-backup-test.s3.ap-southeast-1.amazonaws.com//some/prefix/little_file.txt
     body:
       encoding: ASCII-8BIT
       string: 'It''s just a little file, ya know?  Nothing to it.
@@ -863,7 +863,7 @@ http_interactions:
       Expect:
       - 100-continue
       Host:
-      - tyler-backup-test.s3.ap-southeast-1.amazonaws.com
+      - myapp-backup-test.s3.ap-southeast-1.amazonaws.com
       X-Amz-Date:
       - 20180327T170725Z
       X-Amz-Content-Sha256:
@@ -902,7 +902,7 @@ http_interactions:
   recorded_at: Tue, 27 Mar 2018 17:07:26 GMT
 - request:
     method: get
-    uri: https://tyler-backup-test.s3.ap-southeast-1.amazonaws.com/?encoding-type=url&prefix=/some/prefix/little_file.txt
+    uri: https://myapp-backup-test.s3.ap-southeast-1.amazonaws.com/?encoding-type=url&prefix=/some/prefix/little_file.txt
     body:
       encoding: ASCII-8BIT
       string: ''
@@ -914,7 +914,7 @@ http_interactions:
       User-Agent:
       - aws-sdk-ruby3/3.17.1 ruby/2.3.1 x86_64-darwin17 aws-sdk-s3/1.8.2
       Host:
-      - tyler-backup-test.s3.ap-southeast-1.amazonaws.com
+      - myapp-backup-test.s3.ap-southeast-1.amazonaws.com
       X-Amz-Date:
       - 20180327T170726Z
       X-Amz-Content-Sha256:
@@ -949,12 +949,12 @@ http_interactions:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" encoding="UTF-8"?>
-        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>tyler-backup-test</Name><Prefix>/some/prefix/little_file.txt</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><EncodingType>url</EncodingType><IsTruncated>false</IsTruncated><Contents><Key>/some/prefix/little_file.txt</Key><LastModified>2018-03-27T17:07:27.000Z</LastModified><ETag>&quot;289b8c2b8eeb8fbac8639506f72933bb&quot;</ETag><Size>50</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents></ListBucketResult>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>myapp-backup-test</Name><Prefix>/some/prefix/little_file.txt</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><EncodingType>url</EncodingType><IsTruncated>false</IsTruncated><Contents><Key>/some/prefix/little_file.txt</Key><LastModified>2018-03-27T17:07:27.000Z</LastModified><ETag>&quot;289b8c2b8eeb8fbac8639506f72933bb&quot;</ETag><Size>50</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents></ListBucketResult>
     http_version: 
   recorded_at: Tue, 27 Mar 2018 17:07:27 GMT
 - request:
     method: get
-    uri: https://tyler-backup-test.s3.ap-southeast-1.amazonaws.com/?encoding-type=url&prefix=/some/prefix/little_file.txt
+    uri: https://myapp-backup-test.s3.ap-southeast-1.amazonaws.com/?encoding-type=url&prefix=/some/prefix/little_file.txt
     body:
       encoding: ASCII-8BIT
       string: ''
@@ -966,7 +966,7 @@ http_interactions:
       User-Agent:
       - aws-sdk-ruby3/3.17.1 ruby/2.3.1 x86_64-darwin17 aws-sdk-s3/1.8.2
       Host:
-      - tyler-backup-test.s3.ap-southeast-1.amazonaws.com
+      - myapp-backup-test.s3.ap-southeast-1.amazonaws.com
       X-Amz-Date:
       - 20180327T170727Z
       X-Amz-Content-Sha256:
@@ -1001,12 +1001,12 @@ http_interactions:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" encoding="UTF-8"?>
-        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>tyler-backup-test</Name><Prefix>/some/prefix/little_file.txt</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><EncodingType>url</EncodingType><IsTruncated>false</IsTruncated><Contents><Key>/some/prefix/little_file.txt</Key><LastModified>2018-03-27T17:07:27.000Z</LastModified><ETag>&quot;289b8c2b8eeb8fbac8639506f72933bb&quot;</ETag><Size>50</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents></ListBucketResult>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>myapp-backup-test</Name><Prefix>/some/prefix/little_file.txt</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><EncodingType>url</EncodingType><IsTruncated>false</IsTruncated><Contents><Key>/some/prefix/little_file.txt</Key><LastModified>2018-03-27T17:07:27.000Z</LastModified><ETag>&quot;289b8c2b8eeb8fbac8639506f72933bb&quot;</ETag><Size>50</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents></ListBucketResult>
     http_version: 
   recorded_at: Tue, 27 Mar 2018 17:07:27 GMT
 - request:
     method: delete
-    uri: https://tyler-backup-test.s3.ap-southeast-1.amazonaws.com//some/prefix/little_file.txt
+    uri: https://myapp-backup-test.s3.ap-southeast-1.amazonaws.com//some/prefix/little_file.txt
     body:
       encoding: ASCII-8BIT
       string: ''
@@ -1018,7 +1018,7 @@ http_interactions:
       User-Agent:
       - aws-sdk-ruby3/3.17.1 ruby/2.3.1 x86_64-darwin17 aws-sdk-s3/1.8.2
       Host:
-      - tyler-backup-test.s3.ap-southeast-1.amazonaws.com
+      - myapp-backup-test.s3.ap-southeast-1.amazonaws.com
       X-Amz-Date:
       - 20180327T170727Z
       X-Amz-Content-Sha256:
@@ -1050,7 +1050,7 @@ http_interactions:
   recorded_at: Tue, 27 Mar 2018 17:07:27 GMT
 - request:
     method: get
-    uri: https://tyler-backup-test.s3.ap-southeast-1.amazonaws.com/?encoding-type=url&prefix=/some/prefix/little_file.txt
+    uri: https://myapp-backup-test.s3.ap-southeast-1.amazonaws.com/?encoding-type=url&prefix=/some/prefix/little_file.txt
     body:
       encoding: ASCII-8BIT
       string: ''
@@ -1062,7 +1062,7 @@ http_interactions:
       User-Agent:
       - aws-sdk-ruby3/3.17.1 ruby/2.3.1 x86_64-darwin17 aws-sdk-s3/1.8.2
       Host:
-      - tyler-backup-test.s3.ap-southeast-1.amazonaws.com
+      - myapp-backup-test.s3.ap-southeast-1.amazonaws.com
       X-Amz-Date:
       - 20180327T170727Z
       X-Amz-Content-Sha256:
@@ -1097,7 +1097,7 @@ http_interactions:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" encoding="UTF-8"?>
-        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>tyler-backup-test</Name><Prefix>/some/prefix/little_file.txt</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><EncodingType>url</EncodingType><IsTruncated>false</IsTruncated></ListBucketResult>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>myapp-backup-test</Name><Prefix>/some/prefix/little_file.txt</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><EncodingType>url</EncodingType><IsTruncated>false</IsTruncated></ListBucketResult>
     http_version: 
   recorded_at: Tue, 27 Mar 2018 17:07:28 GMT
 recorded_with: VCR 4.0.0

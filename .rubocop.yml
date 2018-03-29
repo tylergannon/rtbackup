@@ -1,3 +1,5 @@
+inherit_from: .rubocop_todo.yml
+
 # inherit_from: .rubocop_todo.yml
 
 Layout/IndentationWidth:
@@ -5,3 +7,9 @@ Layout/IndentationWidth:
 
 Metrics/LineLength:
   Max: 100
+
+Metrics/MethodLength:
+  Max: 20
+
+Style/Documentation:
+  Enabled: false

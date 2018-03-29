@@ -8,15 +8,57 @@ require 'server_backups'
 require 'main'
 require 'tmpdir'
 
-def backup_thread(cancel_param)
+def find_time_zone(name)
+    ActiveSupport::TimeZone.all.select do |zone|
+        name.casecmp(zone.name).zero? || name.casecmp(zone.tzinfo.name).zero?
+    end.first
+end
+
+# Starts a thread which will basically not do anything
+# if it
+def backup_thread
     Thread.new do
-        Time.zone = 'UTC'
-        unless params[cancel_param].value == true
-            Dir.mktmpdir do |tmp_dir|
-                yield tmp_dir
-            end
+        Dir.mktmpdir do |tmp_dir|
+            yield tmp_dir
         end
     end
+end
+
+def run_backups(backup_type, config_file, database, db_only, files_only)
+    unless db_only
+        website_backup = backup_thread do |tmp_dir|
+            ServerBackups::WebsiteBackup.new(config_file, tmp_dir, backup_type).do_backup
+        end
+    end
+    unless files_only
+        database_backup = backup_thread do |tmp_dir|
+            ServerBackups::MysqlBackup.send(backup_type, config_file, tmp_dir, database).do_backup
+        end
+    end
+    [website_backup, database_backup].compact.each(&:join)
+    exit_success!
+end
+
+def run_restore(config_file, _database, up_to, tz, db_only, _files_only)
+    Chronic.time_class = find_time_zone(tz) if tz
+    up_to = Chronic.parse(up_to)
+    unless db_only
+        website_restore = backup_thread do |tmp_dir|
+            ServerBackups::WebsiteRestore.new(config_file, tmp_dir).do_restore(up_to)
+        end
+    end
+    # unless files_only
+    #     database_restore = backup_thread do |tmp_dir|
+    #         ServerBackups::MysqlBackup.new(config_file, tmp_dir, :daily, database).
+    #             do_restore(up_to)
+    #     end
+    # end
+    [website_restore, database_restore].compact.each(&:join)
+    exit_success!
+end
+
+def time_zone_match?(pattern, timezone)
+    pattern =~ timezone.name || pattern =~ timezone.tzinfo.name
 end
 
 Main do
@@ -42,6 +84,47 @@ Main do
         description 'Only work with files.'
     end
 
+    mode 'restore' do
+        params[:backup_type].ignore!
+        option 'up_to', 'u' do
+            argument :required
+            description 'The point in time to restore to.  See ' \
+                        'https://github.com/mojombo/chronic for examples.'
+            defaults Time.zone.now.to_s
+        end
+        option 'time_zone', 't' do
+            argument :required
+            description 'Time zone that <up_to> is given in. Default: time_zone from config file.'
+        end
+        def run
+            options = params.to_options
+            run_restore(*options.slice('config',
+                                       'database',
+                                       'up_to',
+                                       'time_zone',
+                                       'db_only',
+                                       'files_only').values)
+        end
+    end
+
+    mode 'zones' do
+        params[:backup_type].ignore!
+        argument 'search' do
+            argument :required
+            description "Add a regex pattern to search for, e.g. '*america*'"
+            defaults '.*'
+        end
+
+        def run
+            pattern = Regexp.new(params['search'].value, 'i')
+            ActiveSupport::TimeZone.all.sort_by(&:name).each do |timezone|
+                if time_zone_match?(pattern, timezone)
+                    puts timezone.name + "\t\t" + timezone.tzinfo.name
+                end
+            end
+        end
+    end
+
     argument 'backup_type' do
         cast :symbol
         validate { |command| ServerBackups::BackupBase::BACKUP_TYPES.include? command }
@@ -49,17 +132,11 @@ Main do
     end
 
     def run
-        website_backup = backup_thread('db_only') do |tmp_dir|
-            ServerBackups::WebsiteBackup.send(params['backup_type'].value,
-                                              params['config'].value, tmp_dir).do_backup
-        end
-        database_backup = backup_thread('files_only') do |tmp_dir|
-            ServerBackups::MysqlBackup.send(
-                params['backup_type'].value,
-                params['config'].value, tmp_dir, params['database'].value
-            ).do_backup
-        end
-        [website_backup, database_backup].compact.each(&:join)
-        exit_success!
+        options = params.to_options
+        run_backups(*options.slice('backup_type',
+                                   'config',
+                                   'database',
+                                   'db_only',
+                                   'files_only').values)
     end
 end

@@ -24,6 +24,10 @@ module ServerBackups
             @bucket ||= Aws::S3::Bucket.new(config.bucket, client: client)
         end
 
+        def get_ordered_collection(prefix)
+            OrderedBackupFileCollection.new bucket.objects(prefix: prefix)
+        end
+
         def delete_files_not_newer_than(key, age)
             bucket.objects(prefix: key).each do |file|
                 destroy key, true unless file.last_modified.to_datetime > age

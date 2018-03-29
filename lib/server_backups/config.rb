@@ -22,13 +22,25 @@ module ServerBackups
             exit 1
         end
 
+        class << self
+            def get_time_zone(name)
+                ActiveSupport::TimeZone.all.find do |time_zone|
+                    time_zone.name.casecmp(name).zero? || time_zone.tzinfo.name.casecmp(name).zero?
+                end
+            end
+        end
+
         #
         # General
         #
         FILE_LOCATION = '/var/www'
 
         def web_root
-            @config['file_location'] || FILE_LOCATION
+            File.absolute_path(@config['file_location'] || FILE_LOCATION)
+        end
+
+        def time_zone
+            @config['time_zone'] || 'UTC'
         end
 
         def log_device

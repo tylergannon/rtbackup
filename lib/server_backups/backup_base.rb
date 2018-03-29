@@ -1,19 +1,23 @@
 # frozen_string_literal: true
 
+require 'English'
+
 module ServerBackups
     class BackupBase
         attr_reader :working_directory, :config, :logger, :s3, :backup_type
 
         BACKUP_TYPES = %i[incremental daily weekly monthly].freeze
 
-        TIMESTAMP_FORMAT = '%Y-%m-%dT%H00'
+        TIMESTAMP_FORMAT = '%Y-%m-%dT%H00.UTC%z'
 
         def initialize(config_file, working_directory, backup_type)
             @working_directory = working_directory
             @config = Config.new(config_file)
+            Time.zone = config.time_zone
             @logger = config.logger
-            @backup_type = backup_type
-            logger.debug "Initialized #{backup_type} #{self.class.name.demodulize.titleize}, prefix: '#{s3_prefix}'"
+            @backup_type = backup_type.to_sym
+            logger.debug "Initialized #{backup_type} #{self.class.name.demodulize.titleize}, " \
+                         "prefix: '#{s3_prefix}'"
         end
 
         def incremental?
@@ -42,22 +46,19 @@ module ServerBackups
             "#{self.class.name.demodulize.underscore}.#{backup_type}.#{timestamp}.tgz"
         end
 
+        def title
+            self.class.name.demodulize.titleize
+        end
+
         def take_backup
-            logger.info "Creating #{backup_type} #{self.class.name.demodulize.titleize}"
-            logger.debug create_archive_command
+            logger.info "Creating #{backup_type} #{title} #{create_archive_command}"
+
             system create_archive_command
-            if $CHILD_STATUS.exitstatus == 0
-                logger.info 'Done'
-            else
-                logger.error("Received #{$CHILD_STATUS.inspect} from tar command.")
-                raise BackupCreationError.new("Received #{$CHILD_STATUS.inspect} from tar command.",
+            unless last_command_succeeded?
+                raise BackupCreationError.new("Received #{$CHILD_STATUS} from tar command.",
                                               self.class, backup_type)
             end
-            unless File.exist?(backup_path)
-                raise BackupCreationError.new('tar exited successfully but file does not exist' \
-                        ". \n\nCommand was: " + create_archive_command, self.class, backup_type)
-            end
-            logger.debug "Backup exited with #{$CHILD_STATUS.inspect}"
+            logger.debug "Backup exited with #{$CHILD_STATUS}"
         end
 
         def s3_prefix
@@ -92,12 +93,18 @@ module ServerBackups
         end
 
         def timestamp
-            Time.now.utc.strftime(TIMESTAMP_FORMAT)
+            Time.zone.now.strftime(TIMESTAMP_FORMAT)
         end
 
         def load_resources
             # @mysql = Mys3ql::Mysql.new self.config
             @s3 = S3.new config
+        end
+
+        private
+
+        def last_command_succeeded?
+            $CHILD_STATUS.exitstatus.zero?
         end
     end
 end

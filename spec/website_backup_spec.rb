@@ -12,8 +12,10 @@ RSpec.describe ServerBackups::BackupBase do
 
     describe 'Daily Backup' do
         it 'Has the correct back file name' do
-            travel_to Time.zone.local(2018, 0o3, 27, 14) do
-                expect(subject.backup_filename).to eq('website_backup.daily.2018-03-27T1400.tgz')
+            Time.zone = 'Singapore'
+            travel_to Time.zone.local(2018, 3, 27, 14) do
+                expect(subject.backup_filename).to \
+                    eq('website_backup.daily.2018-03-27T1400.UTC+0800.tgz')
             end
         end
         it 'Has the correct storage prefix' do
@@ -21,11 +23,12 @@ RSpec.describe ServerBackups::BackupBase do
         end
 
         it 'Backs up the file to the s3 bucket', :vcr do
-            travel_to Time.zone.local(2018, 0o3, 27, 17) do
+            Time.zone = 'Singapore'
+            travel_to Time.zone.local(2018, 3, 30, 18, 13) do
                 subject.do_backup
                 expect(File.exist?(File.join(working_dir, subject.backup_filename)))
                 expect(subject.s3.exists?(subject.backup_s3_key))
-                file = subject.s3.bucket.objects(prefix: subject.backup_s3_key).first
+                subject.s3.bucket.objects(prefix: subject.backup_s3_key).first
                 # expect(file.content_length).to eq(261)
                 subject.s3.delete_files_not_newer_than(subject.backup_s3_key, 1.minute.from_now)
                 expect(subject.s3.exists?(subject.backup_s3_key)).not_to be_truthy

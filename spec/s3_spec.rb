@@ -10,11 +10,11 @@ RSpec.describe ServerBackups::S3 do
 
     describe 'Connecting to bucket' do
         it 'Gets the bucket using SDK', :vcr, record: :all do
-            q = Aws::S3::Bucket.new('tyler-backup-test', client: subject.client)
+            Aws::S3::Bucket.new('myapp-backup-test', client: subject.client)
         end
 
         it 'Can access bucket', :vcr do
-            expect(subject.bucket.name).to eq('tyler-backup-test')
+            expect(subject.bucket.name).to eq('myapp-backup-test')
         end
 
         let(:key) { '/some/prefix/' }

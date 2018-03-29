@@ -21,9 +21,7 @@ module ServerBackups
 
         def backup_all_databases
             @database_name = 'mysql'
-            execute_sql('show databases;').reject do |db_name|
-                db_name.in?(SYSTEM_DATABASES)
-            end.each do |database|
+            all_databases.each do |database|
                 self.class.send(backup_type,
                                 config.config_file,
                                 working_directory,
@@ -66,6 +64,12 @@ module ServerBackups
 
         private
 
+        def all_databases
+            execute_sql('show databases;').reject do |db_name|
+                db_name.in?(SYSTEM_DATABASES)
+            end
+        end
+
         def binary_logging?
             !config.bin_log.blank?
         end
@@ -77,11 +81,9 @@ module ServerBackups
 
         def execute_sql(sql)
             cmd = "#{config.mysql_bin} --silent --skip-column-names -e \"#{sql}\" #{cli_options}"
-            logger.debug 'Executing raw SQL against ' + database_name
-            logger.debug cmd
+            logger.debug "Executing raw SQL against #{database_name}\n#{cmd}"
             output = `#{cmd}`
-            logger.debug 'Returned ' + $CHILD_STATUS.inspect + '. STDOUT was:'
-            logger.debug output
+            logger.debug "Returned #{$CHILD_STATUS.inspect}. STDOUT was:\n#{output}"
             output.split("\n") unless output.blank?
         end
     end

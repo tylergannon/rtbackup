@@ -9,4 +9,6 @@ module ServerBackups
             super(msg)
         end
     end
+
+    class RestoreTarError < BackupCreationError; end
 end

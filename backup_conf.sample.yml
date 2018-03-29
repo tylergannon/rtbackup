@@ -6,6 +6,11 @@
 # 
 ###############################################################################
 
+# Default: UTC
+# To see a list of time zones, run
+# `server_backup zones <?search_str>`
+time_zone: 'Singapore'
+
 logging:
     # DEBUG, INFO, WARN, ERROR, FATAL
     log_threshold: 'DEBUG'

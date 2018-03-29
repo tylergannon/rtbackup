@@ -5,6 +5,8 @@ require 'server_backups'
 require 'active_support'
 require 'active_support/testing/time_helpers'
 require 'vcr'
+require 'tmpdir'
+require 'fileutils'
 
 RSpec.shared_context 'Global helpers' do
     let(:config_path) do
@@ -22,12 +24,13 @@ end
 
 RSpec.configure do |config|
     # Enable flags like --only-failures and --next-failure
-    VCR.configure do |config|
-        config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-        config.hook_into :webmock
-        config.configure_rspec_metadata!
-        # config.record_mode = :all
-        config.default_cassette_options = {
+    Time.zone = 'UTC'
+    VCR.configure do |vcr_conf|
+        vcr_conf.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+        vcr_conf.hook_into :webmock
+        vcr_conf.configure_rspec_metadata!
+        # vcr_conf.record_mode = :all
+        vcr_conf.default_cassette_options = {
             record: :once
         }
     end

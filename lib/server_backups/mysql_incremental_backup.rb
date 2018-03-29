@@ -8,22 +8,24 @@ module ServerBackups
             super(config_file, working_directory, :incremental, database_name)
         end
 
+        class BinlogFilename
+            attr_reader :path
+            def initialize(path)
+                @path = path
+            end
+
+            def log_index
+                /(\d{6})/.match(File.basename(file)).captures.first
+            end
+        end
+
         def do_backup
             load_resources
             flush_logs
-            stored_indexes = []
-            each_remote_bin_log do |index:, **_x|
-                stored_indexes << index
-            end
             each_bin_log do |file|
-                index = /(\d{6})/.match(File.basename(file)).captures.first
-                if index.in?(stored_indexes)
-                    logger.debug "Skipping #{file} because it's already stored."
-                    next
-                end
-                dest_filename = File.basename(file) + '.' + timestamp
-                logger.info "Storing #{file} to " + dest_filename
-                s3.save file, File.join(s3_prefix, dest_filename)
+                index = BinlogFilename.new(file).index
+                next if index.in?(already_stored_log_indexes)
+                backup_single_bin_log(file)
             end
         end
 
@@ -44,24 +46,44 @@ module ServerBackups
             end
         end
 
-        def each_remote_bin_log
-            s3.bucket.objects(prefix: s3_prefix).each do |file|
-                yield **parse_remote_binlog_filename(file)
+        # def each_remote_bin_log
+        #     remote_bin_logs.each do |file|
+        #         yield(**parse_remote_binlog_filename(file))
+        #     end
+        # end
+
+        # def parse_remote_binlog_filename(file)
+        #     filename = File.basename(file.key)
+        #     prefix, index, timestamp = REMOTE_FILENAME_REGEX.match(filename).captures
+        #     {
+        #         key: file.key,
+        #         file: file,
+        #         prefix: prefix,
+        #         index: index,
+        #         timestamp: timestamp,
+        #         datetime: Time.zone.strptime(timestamp, TIMESTAMP_FORMAT)
+        #     }
+        # end
+
+        private
+
+        REMOTE_FILENAME_REGEX = /(.*)\.(\d+)\.(.{15})/
+        def already_stored_log_indexes
+            remote_bin_logs.map do |s3object|
+                _, index = REMOTE_FILENAME_REGEX.match(s3object.key).captures
+                index
             end
         end
 
-        REMOTE_FILENAME_REGEX = /(.*)\.(\d+)\.(.{15})/
-        def parse_remote_binlog_filename(file)
-            filename = File.basename(file.key)
-            prefix, index, timestamp = REMOTE_FILENAME_REGEX.match(filename).captures
-            {
-                key: file.key,
-                file: file,
-                prefix: prefix,
-                index: index,
-                timestamp: timestamp,
-                datetime: Time.zone.strptime(timestamp, TIMESTAMP_FORMAT)
-            }
+        def remote_bin_logs
+            s3.bucket.objects(prefix: s3_prefix)
+        end
+
+        def backup_single_bin_log(file)
+            logger.debug "Backing up #{file}."
+            dest_filename = File.basename(file) + '.' + timestamp
+            logger.info "Storing #{file} to #{dest_filename}"
+            s3.save file, File.join(s3_prefix, dest_filename)
         end
     end
 end

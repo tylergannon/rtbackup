@@ -113,9 +113,14 @@ module ServerBackups
 
         MYSQLDUMP = 'mysqldump'
         MYSQL = 'mysql'
+        MYSQLBINLOG = 'mysqlbinlog'
 
         def mysqldump_bin
             File.join(bin_path, MYSQLDUMP)
+        end
+
+        def mysqlbinlog_bin
+            File.join(bin_path, MYSQLBINLOG)
         end
 
         def mysql_bin

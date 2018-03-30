@@ -1,0 +1,107 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://myapp-backup-test.s3.ap-southeast-1.amazonaws.com/?encoding-type=url&prefix=my_test_app/mysql_backup
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.17.1 ruby/2.3.1 x86_64-darwin17 aws-sdk-s3/1.8.2
+      Host:
+      - myapp-backup-test.s3.ap-southeast-1.amazonaws.com
+      X-Amz-Date:
+      - 20180330T142349Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDFASDFASDFASDFAS/20180330/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;user-agent;x-amz-content-sha256;x-amz-date, Signature=d8b9c64a3339d4ffea898e63c88288576c4dab3541785ff633065d2e27c8df9f
+      Content-Length:
+      - '0'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - KH0JJWNH7Ttk05XQaNeZnN8l7BKkEeGg1/ori0oHgl70yzHfj0ULw8K+fgJx1V3tu1cXCtOOEPo=
+      X-Amz-Request-Id:
+      - CAF3836F607E4F80
+      Date:
+      - Fri, 30 Mar 2018 14:23:51 GMT
+      X-Amz-Bucket-Region:
+      - ap-southeast-1
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>myapp-backup-test</Name><Prefix>my_test_app/mysql_backup</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><EncodingType>url</EncodingType><IsTruncated>false</IsTruncated><Contents><Key>my_test_app/mysql_backup/incremental/mysql-bin.000034.2018-03-30T0000.UTC%2B0800</Key><LastModified>2018-03-30T12:30:04.000Z</LastModified><ETag>&quot;7e53b2ec9c3f7226c8859cbf70955d6f&quot;</ETag><Size>1394</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents><Contents><Key>my_test_app/mysql_backup/incremental/mysql-bin.000035.2018-03-30T0100.UTC%2B0800</Key><LastModified>2018-03-30T12:30:12.000Z</LastModified><ETag>&quot;bf76d84863aa16e47b2ae2bb5122fb6c&quot;</ETag><Size>18187</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents><Contents><Key>my_test_app/mysql_backup/incremental/mysql-bin.000036.2018-03-30T0200.UTC%2B0800</Key><LastModified>2018-03-30T12:30:18.000Z</LastModified><ETag>&quot;f82b4b15e444f69c323f05d7a3b6f1a5&quot;</ETag><Size>740</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents><Contents><Key>my_test_app/mysql_backup/incremental/mysql-bin.000037.2018-03-30T0300.UTC%2B0800</Key><LastModified>2018-03-30T12:34:07.000Z</LastModified><ETag>&quot;d9a87c6c6cd5849e00aad06efb933360&quot;</ETag><Size>2089</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents><Contents><Key>my_test_app/mysql_backup/incremental/mysql-bin.000039.2018-03-30T0500.UTC%2B0800</Key><LastModified>2018-03-30T12:34:33.000Z</LastModified><ETag>&quot;7456059c6576b723326219f725c2166a&quot;</ETag><Size>18187</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents><Contents><Key>my_test_app/mysql_backup/my_test_app/daily/mysql_backup.daily.2018-03-29T2300.UTC%2B0800.sql.gz</Key><LastModified>2018-03-30T12:29:08.000Z</LastModified><ETag>&quot;8cd40e85e9e0542d15df9ed85e1d34cf&quot;</ETag><Size>1290</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents><Contents><Key>my_test_app/mysql_backup/my_test_app/daily/mysql_backup.daily.2018-03-30T0400.UTC%2B0800.sql.gz</Key><LastModified>2018-03-30T12:29:17.000Z</LastModified><ETag>&quot;3f9af8eda174e24e64f2cfaaf4afa831&quot;</ETag><Size>768</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents></ListBucketResult>
+    http_version: 
+  recorded_at: Fri, 30 Mar 2018 14:23:50 GMT
+- request:
+    method: get
+    uri: https://myapp-backup-test.s3.ap-southeast-1.amazonaws.com/?encoding-type=url&prefix=my_test_app/mysql_backup
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.17.1 ruby/2.3.1 x86_64-darwin17 aws-sdk-s3/1.8.2
+      Host:
+      - myapp-backup-test.s3.ap-southeast-1.amazonaws.com
+      X-Amz-Date:
+      - 20180330T142350Z
+      X-Amz-Content-Sha256:
+      - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=ASDFASDFASDFASDFAS/20180330/ap-southeast-1/s3/aws4_request,
+        SignedHeaders=host;user-agent;x-amz-content-sha256;x-amz-date, Signature=26c4a88fd218f71cfc1e56fdaf70208b7b6c05600d113620503ff6d4ab4b9dd2
+      Content-Length:
+      - '0'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - YTdZNkn3LwLZ5y6CXyMsbvV3zl2yp47hj83lN1aduYPV6Sfk4TabewAMb6c7Kjox/AtzkdiMI+g=
+      X-Amz-Request-Id:
+      - 1F1F95C8F4F374D9
+      Date:
+      - Fri, 30 Mar 2018 14:23:52 GMT
+      X-Amz-Bucket-Region:
+      - ap-southeast-1
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>myapp-backup-test</Name><Prefix>my_test_app/mysql_backup</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><EncodingType>url</EncodingType><IsTruncated>false</IsTruncated><Contents><Key>my_test_app/mysql_backup/incremental/mysql-bin.000034.2018-03-30T0000.UTC%2B0800</Key><LastModified>2018-03-30T12:30:04.000Z</LastModified><ETag>&quot;7e53b2ec9c3f7226c8859cbf70955d6f&quot;</ETag><Size>1394</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents><Contents><Key>my_test_app/mysql_backup/incremental/mysql-bin.000035.2018-03-30T0100.UTC%2B0800</Key><LastModified>2018-03-30T12:30:12.000Z</LastModified><ETag>&quot;bf76d84863aa16e47b2ae2bb5122fb6c&quot;</ETag><Size>18187</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents><Contents><Key>my_test_app/mysql_backup/incremental/mysql-bin.000036.2018-03-30T0200.UTC%2B0800</Key><LastModified>2018-03-30T12:30:18.000Z</LastModified><ETag>&quot;f82b4b15e444f69c323f05d7a3b6f1a5&quot;</ETag><Size>740</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents><Contents><Key>my_test_app/mysql_backup/incremental/mysql-bin.000037.2018-03-30T0300.UTC%2B0800</Key><LastModified>2018-03-30T12:34:07.000Z</LastModified><ETag>&quot;d9a87c6c6cd5849e00aad06efb933360&quot;</ETag><Size>2089</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents><Contents><Key>my_test_app/mysql_backup/incremental/mysql-bin.000039.2018-03-30T0500.UTC%2B0800</Key><LastModified>2018-03-30T12:34:33.000Z</LastModified><ETag>&quot;7456059c6576b723326219f725c2166a&quot;</ETag><Size>18187</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents><Contents><Key>my_test_app/mysql_backup/my_test_app/daily/mysql_backup.daily.2018-03-29T2300.UTC%2B0800.sql.gz</Key><LastModified>2018-03-30T12:29:08.000Z</LastModified><ETag>&quot;8cd40e85e9e0542d15df9ed85e1d34cf&quot;</ETag><Size>1290</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents><Contents><Key>my_test_app/mysql_backup/my_test_app/daily/mysql_backup.daily.2018-03-30T0400.UTC%2B0800.sql.gz</Key><LastModified>2018-03-30T12:29:17.000Z</LastModified><ETag>&quot;3f9af8eda174e24e64f2cfaaf4afa831&quot;</ETag><Size>768</Size><Owner><ID>f42622f3bee310e052766668800f74cbf34ce89773fedfc8ca592f33bf6841fa</ID><DisplayName>vince</DisplayName></Owner><StorageClass>STANDARD_IA</StorageClass></Contents></ListBucketResult>
+    http_version: 
+  recorded_at: Fri, 30 Mar 2018 14:23:51 GMT
+recorded_with: VCR 4.0.0

@@ -2,7 +2,7 @@
 
 module ServerBackups
     class RestoreBase
-        attr_reader :config, :s3, :working_dir, :restore_point
+        attr_reader :config, :s3, :working_dir, :restore_point, :database
 
         def initialize(config_file, working_dir, restore_point)
             @working_dir = working_dir
@@ -10,7 +10,7 @@ module ServerBackups
             @restore_point = restore_point
             Time.zone = config.time_zone
             @s3 = S3.new(config)
-            logger.debug "Initialized #{title}, prefix: '#{s3_prefix}'"
+            logger.debug "Initialized #{title}."
         end
 
         private

@@ -22,21 +22,32 @@ module ServerBackups
         end
 
         def restore_script_path
-            File.join(working_dir, "#{database_name}.sql")
+            File.join(working_dir, "#{database}.sql")
+        end
+
+        ETC_TIMEZONE = '/etc/timezone'
+
+        def formatted_restore_point_in_system_time_zone
+            time_zone = File.exist?(ETC_TIMEZONE) ? File.read(ETC_TIMEZONE) : 'UTC'
+            restore_point.in_time_zone(time_zone) \
+                         .strftime('%Y-%m-%d %H:%M:%S')
         end
 
         def do_restore
-            full_backup_file.get response_target: (restore_script_path + ".gz")
+            full_backup_file.get response_target: (restore_script_path + '.gz')
             system "gunzip #{restore_script_path}.gz"
+
             incremental_backups.each do |s3object|
                 file = Tempfile.new('foo')
                 begin
                     s3object.get response_target: file
                     file.close
-                    system config.mysqlbinlog + " " + file.path + " --database=#{database} >> " + restore_script_path
+                    system config.mysqlbinlog_bin + ' ' + file.path + \
+                           " --stop-datetime='#{formatted_restore_point_in_system_time_zone}'" \
+                           " --database=#{database} >> " + restore_script_path
                 ensure
-                   file.close
-                   file.unlink   # deletes the temp file
+                    file.close
+                    file.unlink # deletes the temp file
                 end
             end
 
@@ -62,12 +73,12 @@ module ServerBackups
 
         def cli_options
             cmd = config.password.blank? ? '' : " -p'#{config.password}' "
-            cmd + " -u'#{config.user}' " + database_name
+            cmd + " -u'#{config.user}' " + database
         end
 
         def execute_script(path)
             cmd = "#{config.mysql_bin} --silent --skip-column-names #{cli_options}"
-            logger.debug "Executing raw SQL against #{database_name}\n#{cmd}"
+            logger.debug "Executing raw SQL against #{ database}\n#{cmd}"
             output = `#{cmd} < #{path}`
             logger.debug "Returned #{$CHILD_STATUS.inspect}. STDOUT was:\n#{output}"
             output.split("\n") unless output.blank?

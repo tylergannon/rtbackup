@@ -6,7 +6,7 @@ require 'yaml'
 RSpec.describe ServerBackups::Config do
     describe 'retention times' do
         before do
-            travel_to Time.zone.local(2004, 11, 24, 01, 04, 44)
+            travel_to Time.zone.local(2004, 11, 24, 0o1, 0o4, 44)
         end
         after do
             travel_back

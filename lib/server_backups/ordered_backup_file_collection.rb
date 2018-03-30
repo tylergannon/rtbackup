@@ -13,6 +13,12 @@ module ServerBackups
             end
         end
 
+        def full_backup_for(restore_point)
+            sorted(full_backups).reverse.find do |file|
+                get_timestamp_from_s3_object(file) <= restore_point
+            end
+        end
+
         def incremental_backups_for(restore_point)
             sorted eligible_incremental_backups(restore_point)
         end

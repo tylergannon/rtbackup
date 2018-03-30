@@ -13,7 +13,9 @@ require 'server_backups/website_backup'
 require 'server_backups/mysql_backup'
 require 'server_backups/mysql_incremental_backup'
 require 'server_backups/ordered_backup_file_collection'
+require 'server_backups/restore_base'
 require 'server_backups/website_restore'
+require 'server_backups/mysql_restore'
 
 module ServerBackups
 end

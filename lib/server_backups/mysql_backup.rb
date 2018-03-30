@@ -62,13 +62,13 @@ module ServerBackups
             "mysql_backup.#{backup_type}.#{timestamp}.sql.gz"
         end
 
-        private
-
         def all_databases
             execute_sql('show databases;').reject do |db_name|
                 db_name.in?(SYSTEM_DATABASES)
             end
         end
+
+        private
 
         def binary_logging?
             !config.bin_log.blank?

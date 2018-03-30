@@ -29,10 +29,7 @@ RSpec.configure do |config|
         vcr_conf.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
         vcr_conf.hook_into :webmock
         vcr_conf.configure_rspec_metadata!
-        # vcr_conf.record_mode = :all
-        vcr_conf.default_cassette_options = {
-            record: :once
-        }
+        ENV['RECORD'].present? && vcr_conf.default_cassette_options = { record: :all }
     end
 
     config.example_status_persistence_file_path = '.rspec_status'

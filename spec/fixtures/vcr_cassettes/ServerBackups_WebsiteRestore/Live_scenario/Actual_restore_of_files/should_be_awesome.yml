@@ -20,7 +20,7 @@ http_interactions:
       X-Amz-Content-Sha256:
       - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
       Authorization:
-      - AWS4-HMAC-SHA256 Credential=AKIAIL253DSYLFRLTG7Q/20180330/ap-southeast-1/s3/aws4_request,
+      - AWS4-HMAC-SHA256 Credential=ASDFASDFASDFASDFAS/20180330/ap-southeast-1/s3/aws4_request,
         SignedHeaders=host;user-agent;x-amz-content-sha256;x-amz-date, Signature=48a117d4864aac8b53c5b3b456d439f518f75c0ebd170c48dae3de8028e1d90c
       Content-Length:
       - '0'
@@ -88,7 +88,7 @@ http_interactions:
       X-Amz-Content-Sha256:
       - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
       Authorization:
-      - AWS4-HMAC-SHA256 Credential=AKIAIL253DSYLFRLTG7Q/20180330/ap-southeast-1/s3/aws4_request,
+      - AWS4-HMAC-SHA256 Credential=ASDFASDFASDFASDFAS/20180330/ap-southeast-1/s3/aws4_request,
         SignedHeaders=host;user-agent;x-amz-content-sha256;x-amz-date, Signature=38b2a4a3364670e43214ab6fcc4d315fb092f3ee4d8a0ae8f347a7542aa82c9a
       Content-Length:
       - '0'
@@ -140,7 +140,7 @@ http_interactions:
       X-Amz-Content-Sha256:
       - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
       Authorization:
-      - AWS4-HMAC-SHA256 Credential=AKIAIL253DSYLFRLTG7Q/20180330/ap-southeast-1/s3/aws4_request,
+      - AWS4-HMAC-SHA256 Credential=ASDFASDFASDFASDFAS/20180330/ap-southeast-1/s3/aws4_request,
         SignedHeaders=host;user-agent;x-amz-content-sha256;x-amz-date, Signature=4f8158d63272251fbd00cb83f08c858bb0ba7c058e786979d570a1214e8a9658
       Content-Length:
       - '0'
@@ -192,7 +192,7 @@ http_interactions:
       X-Amz-Content-Sha256:
       - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
       Authorization:
-      - AWS4-HMAC-SHA256 Credential=AKIAIL253DSYLFRLTG7Q/20180330/ap-southeast-1/s3/aws4_request,
+      - AWS4-HMAC-SHA256 Credential=ASDFASDFASDFASDFAS/20180330/ap-southeast-1/s3/aws4_request,
         SignedHeaders=host;user-agent;x-amz-content-sha256;x-amz-date, Signature=4f8158d63272251fbd00cb83f08c858bb0ba7c058e786979d570a1214e8a9658
       Content-Length:
       - '0'
@@ -244,7 +244,7 @@ http_interactions:
       X-Amz-Content-Sha256:
       - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
       Authorization:
-      - AWS4-HMAC-SHA256 Credential=AKIAIL253DSYLFRLTG7Q/20180330/ap-southeast-1/s3/aws4_request,
+      - AWS4-HMAC-SHA256 Credential=ASDFASDFASDFASDFAS/20180330/ap-southeast-1/s3/aws4_request,
         SignedHeaders=host;user-agent;x-amz-content-sha256;x-amz-date, Signature=53850c988fde0c719ca2f8e234d33a357856307a8c8a6aa61945989a9f112a60
       Content-Length:
       - '0'
@@ -307,7 +307,7 @@ http_interactions:
       X-Amz-Content-Sha256:
       - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
       Authorization:
-      - AWS4-HMAC-SHA256 Credential=AKIAIL253DSYLFRLTG7Q/20180330/ap-southeast-1/s3/aws4_request,
+      - AWS4-HMAC-SHA256 Credential=ASDFASDFASDFASDFAS/20180330/ap-southeast-1/s3/aws4_request,
         SignedHeaders=host;user-agent;x-amz-content-sha256;x-amz-date, Signature=3f99cf0c735fbd2162c46a42c71a037659bc4585c6650750c49feed738973e11
       Content-Length:
       - '0'
@@ -376,7 +376,7 @@ http_interactions:
       X-Amz-Content-Sha256:
       - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
       Authorization:
-      - AWS4-HMAC-SHA256 Credential=AKIAIL253DSYLFRLTG7Q/20180330/ap-southeast-1/s3/aws4_request,
+      - AWS4-HMAC-SHA256 Credential=ASDFASDFASDFASDFAS/20180330/ap-southeast-1/s3/aws4_request,
         SignedHeaders=host;user-agent;x-amz-content-sha256;x-amz-date, Signature=0847b5f47097382a646409722fbc77edbb48ed272d3f41fd31cbb9b77381aef4
       Content-Length:
       - '0'
@@ -441,7 +441,7 @@ http_interactions:
       X-Amz-Content-Sha256:
       - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
       Authorization:
-      - AWS4-HMAC-SHA256 Credential=AKIAIL253DSYLFRLTG7Q/20180330/ap-southeast-1/s3/aws4_request,
+      - AWS4-HMAC-SHA256 Credential=ASDFASDFASDFASDFAS/20180330/ap-southeast-1/s3/aws4_request,
         SignedHeaders=host;user-agent;x-amz-content-sha256;x-amz-date, Signature=afb4763fe54e8c9e23cbe72ca28a13d0b7ed22b415342b915d0f619da7a18523
       Content-Length:
       - '0'

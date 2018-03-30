@@ -58,20 +58,22 @@ require 'spec_helper'
 
 RSpec.describe ServerBackups::WebsiteRestore do
     # Backups are assumed to be in Singpore
+    # But notice that the time zone is set to UTC to demonstrate
+    # the freedom to change time zone as long as the time math is done correctly.
     describe 'Live scenario', :vcr do
         after do
             FileUtils.rm_rf 'spec/fixtures/www.backup' if File.exist?('spec/fixtures/www.backup')
         end
-        let(:time_zone) { ServerBackups::Config.get_time_zone('Singapore') }
+        let(:time_zone) { ServerBackups::Config.get_time_zone('UTC') }
         # Restore point is Mar 30 2018, 2:30 AM, UTC +800
-        let(:restore_point) { time_zone.local(2018, 3, 30, 2, 30) }
+        let(:restore_point) { time_zone.local(2018, 3, 29, 18, 30) }
         let(:restore) { described_class.new(config_path, working_dir, restore_point) }
         let(:working_dir) { Dir.mktmpdir }
         let(:expected_filenames) do
-            %w[website_backup.daily.2018-03-29T2300.tgz
-               website_backup.incremental.2018-03-30T0000.tgz
-               website_backup.incremental.2018-03-30T0100.tgz
-               website_backup.incremental.2018-03-30T0200.tgz]
+            %w[website_backup.daily.2018-03-29T2300.UTC+0800.tgz
+               website_backup.incremental.2018-03-30T0000.UTC+0800.tgz
+               website_backup.incremental.2018-03-30T0100.UTC+0800.tgz
+               website_backup.incremental.2018-03-30T0200.UTC+0800.tgz]
         end
 
         it 'Selects the right files to restore.', :vcr do

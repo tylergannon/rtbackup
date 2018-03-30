@@ -19,9 +19,13 @@ module ServerBackups
             self.class.name.demodulize.titleize
         end
 
-        TIMESTAMP_REGEXP = /(\d{4})-(\d{2})-(\d{2})T(\d{2})00/
+        TIMESTAMP_REGEXP = /(\d{4})-(\d{2})-(\d{2})T(\d{2})00\.UTC([+-]\d{4})/
         def extract_backup_time_from_filename(filename)
-            Time.zone.local(*TIMESTAMP_REGEXP.match(filename).captures)
+            time_parts = TIMESTAMP_REGEXP.match(filename).captures
+            # Add in hours and seconds arguments
+            # https://ruby-doc.org/core-2.2.0/Time.html#method-c-new
+            time_parts.insert(4, 0, 0)
+            Time.new(*time_parts)
         end
 
         def all_files

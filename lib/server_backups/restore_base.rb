@@ -7,8 +7,12 @@ module ServerBackups
         def initialize(config_file, working_dir, restore_point)
             @working_dir = working_dir
             @config = Config.new(config_file)
-            @restore_point = restore_point
             Time.zone = config.time_zone
+            @restore_point = if restore_point.present?
+                                 restore_point
+                             else
+                                 Time.zone.now
+                             end
             @s3 = S3.new(config)
             logger.debug "Initialized #{title}."
         end

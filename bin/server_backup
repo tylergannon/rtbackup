@@ -25,34 +25,39 @@ def backup_thread
 end
 
 def run_backups(backup_type, config_file, database, db_only, files_only)
-    unless db_only
-        website_backup = backup_thread do |tmp_dir|
-            ServerBackups::WebsiteBackup.new(config_file, tmp_dir, backup_type).do_backup
-        end
-    end
-    unless files_only
-        database_backup = backup_thread do |tmp_dir|
-            ServerBackups::MysqlBackup.send(backup_type, config_file, tmp_dir, database).do_backup
-        end
-    end
+    website_backup = unless db_only
+                         backup_thread do |tmp_dir|
+                             ServerBackups::WebsiteBackup.new(config_file,
+                                                              tmp_dir, backup_type).do_backup
+                         end
+                     end
+    database_backup = unless files_only
+                          backup_thread do |tmp_dir|
+                              ServerBackups::MysqlBackup.send(backup_type,
+                                                              config_file,
+                                                              tmp_dir, database).do_backup
+                          end
+                      end
     [website_backup, database_backup].compact.each(&:join)
     exit_success!
 end
 
-def run_restore(config_file, _database, up_to, tz, db_only, _files_only)
+def run_restore(config_file, database, up_to, tz, db_only, files_only)
     Chronic.time_class = find_time_zone(tz) if tz
     up_to = Chronic.parse(up_to)
-    unless db_only
-        website_restore = backup_thread do |tmp_dir|
-            ServerBackups::WebsiteRestore.new(config_file, tmp_dir).do_restore(up_to)
-        end
-    end
-    # unless files_only
-    #     database_restore = backup_thread do |tmp_dir|
-    #         ServerBackups::MysqlBackup.new(config_file, tmp_dir, :daily, database).
-    #             do_restore(up_to)
-    #     end
-    # end
+    website_restore = unless db_only
+                          backup_thread do |tmp_dir|
+                              ServerBackups::WebsiteRestore.new(config_file,
+                                                                tmp_dir, up_to).do_restore
+                          end
+                      end
+    database_restore = unless files_only
+                           backup_thread do |tmp_dir|
+                               ServerBackups::MysqlRestore.restore(config_file,
+                                                                   tmp_dir,
+                                                                   up_to, database)
+                           end
+                       end
     [website_restore, database_restore].compact.each(&:join)
     exit_success!
 end
@@ -90,9 +95,8 @@ Main do
             argument :required
             description 'The point in time to restore to.  See ' \
                         'https://github.com/mojombo/chronic for examples.'
-            defaults Time.zone.now.to_s
         end
-        option 'time_zone', 't' do
+        option 'time_zone', 'z' do
             argument :required
             description 'Time zone that <up_to> is given in. Default: time_zone from config file.'
         end

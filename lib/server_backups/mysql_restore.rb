@@ -28,8 +28,7 @@ module ServerBackups
         ETC_TIMEZONE = '/etc/timezone'
 
         def formatted_restore_point_in_system_time_zone
-            time_zone = File.exist?(ETC_TIMEZONE) ? File.read(ETC_TIMEZONE) : 'UTC'
-            restore_point.in_time_zone(time_zone) \
+            restore_point.in_time_zone(config.system_time_zone) \
                          .strftime('%Y-%m-%d %H:%M:%S')
         end
 

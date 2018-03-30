@@ -43,6 +43,19 @@ module ServerBackups
             @config['time_zone'] || 'UTC'
         end
 
+        def system_time_zone
+            tz = if @config['system_time_zone']
+                     @config['system_time_zone']
+                 elsif File.exist?('/etc/timezone')
+                     File.read('/etc/timezone')
+                 elsif File.exist?('/etc/localtime')
+                     %r{([\w_]+\/[\w_]+)$}.match(`ls -l /etc/localtime`).captures.first
+                 else
+                     'UTC'
+                 end
+            self.class.get_time_zone(tz)
+        end
+
         def log_device
             logging['use_stdout'] == true ? STDOUT : logging['logfile_path']
         end

@@ -30,6 +30,22 @@ module ServerBackups
             end
         end
 
+        def slack_webhook
+            @config.fetch('slack', nil)&.fetch('webhook')
+        end
+
+        def notify_on_success
+            @config.fetch('slack', nil)&.fetch('notify_on_success', false)
+        end
+
+        def slack_mention_on_failure
+            @config.fetch('slack', nil)&.fetch('mention_users_on_failure', [])
+        end
+
+        def slack_mention_on_success
+            @config.fetch('slack', nil)&.fetch('mention_users_on_success', [])
+        end
+
         #
         # General
         #

@@ -6,11 +6,6 @@
 # 
 ###############################################################################
 
-# Default: UTC
-# To see a list of time zones, run
-# `server_backup zones <?search_str>`
-time_zone: 'Singapore'
-
 logging:
     # DEBUG, INFO, WARN, ERROR, FATAL
     log_threshold: 'DEBUG'
@@ -18,54 +13,70 @@ logging:
     # section will be ignored.
     use_stdout: true
     logfile_path: '/tmp/server_backup.log'
-    keep_files: 5
+    keep_files: 1
     file_size:
-        megabytes: 1
+        kilobytes: 100
 
-# incremental backups are all in increments since the last incremental or since
-# the last full backup.
-# Everything other than incremental backups are FULL backups.
+# Optional.  Defaults to /var/www
+file_location: 'spec/fixtures/www'
+# The time zone that you'd like backups to be kept in.
+# Backup files will be named with a timestamp located in the given timezone.
+time_zone: 'Singapore'
+# Optional.  Will attempt to determine from operating system
+# defaults to the value of the `time_zone` property above.
+system_time_zone: 'Asia/Ho_Chi_Minh'
+
+slack: 
+  # Set up a new webhook at https://slack.com/apps/A0F7XDUAZ-incoming-webhooks
+  # Once configured, put the address here.
+  webhook: https://hooks.slack.com/services/asdasdasdasdasdasdasdasdasdasd
+  # If you want to babysit your backups, set this true.
+  notify_on_success: true
+  # A list of user ids of persons to @mention when posting success messages.
+  mention_users_on_failure:
+    - U9ASDFASD
+    # - U8SXDFG34
+    # - U23SDU3LD
+    # - U3234ASD4
+  # Leave empty for none.
+  mention_users_on_success:
+    - U9ASDFASD
+
 retention:
-	incremental:
-		# Each time you run incremental backup, it will finish by deleting all
-		# incremental backups younger than seven days.
-		# Note that if you wanted to get exact about it, you could also say
-		# "hours: 144", and it would delete everything younger than 6 days, 1 hour.
-		hours: 144
-	daily:
-		# Each time you run daily backup, it will finish by deleting dailies
-		# that are younger than seven days.
-		days: 6
-	weekly:
-		weeks: 3
-	monthly:
-		months: 11
+  incremental:
+    hours: 144
+  daily:
+    days: 6
+  weekly:
+    weeks: 3
+  monthly:
+    months: 11
 
 mysql:
-	# Database to back up
-	database:
-	# MySql credentials
-	user: root
-	password:
-	# Path (with trailing slash) to mysql commands e.g. mysqldump
-	bin_path: /usr/local/mysql/bin/
-	# If you are using MySql binary logging:
-	# Path to the binary logs, should match the log_bin option in your my.cnf.
-	# Comment out if you are not using mysql binary logging
-	bin_log: /var/lib/mysql/binlog/mysql-bin
+  # Database to back up
+  database:
+  # MySql credentials
+  user: root
+  password:
+  # Path (with trailing slash) to mysql commands e.g. mysqldump
+  bin_path: /usr/local/bin/
+  # If you are using MySql binary logging:
+  # Path to the binary logs, should match the log_bin option in your my.cnf.
+  # Comment out if you are not using mysql binary logging
+  bin_log: /var/tmp/mysql-bin
 
 s3:
-	# S3 credentials
-	access_key_id: asdflaksjdflakjsdflakjs
-	secret_access_key: aslkdjfalksjdfalksjdf;lkj;lkajsdfauisdhf
-	# Bucket in which to store your backups
-	bucket: your-backup-bucket
+  # S3 credentials
+  access_key_id: ASDFASDFASDFASDFASDF
+  secret_access_key: asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf
+  # Bucket in which to store your backups
+  # # Bucket in which to store your backups
+  bucket: myapp-backup-test
 
-	# The prefix under which to store and retrieve backups for this server
-	#  e.g. my_app_name
-	prefix: my_test_app
+  # The prefix under which to store and retrieve backups for this server
+  #  e.g. my_app_name
+  prefix: my_test_app
 
-	# AWS region your bucket lives in.
-	# (I suspect you only need to specify this when your 'location' is in a different region.)
-	region: ap-southeast-1
-	
+  # AWS region your bucket lives in.
+  # (I suspect you only need to specify this when your 'location' is in a different region.)
+  region: ap-southeast-1

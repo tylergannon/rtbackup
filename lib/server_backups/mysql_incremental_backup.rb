@@ -15,7 +15,7 @@ module ServerBackups
             end
 
             def log_index
-                /(\d{6})/.match(File.basename(file)).captures.first
+                /(\d{6})/.match(File.basename(path)).captures.first
             end
         end
 
@@ -23,7 +23,7 @@ module ServerBackups
             load_resources
             flush_logs
             each_bin_log do |file|
-                index = BinlogFilename.new(file).index
+                index = BinlogFilename.new(file).log_index
                 next if index.in?(already_stored_log_indexes)
                 backup_single_bin_log(file)
             end

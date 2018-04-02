@@ -14,13 +14,28 @@ def find_time_zone(name)
     end.first
 end
 
-# Starts a thread which will basically not do anything
-# if it
+ERRORS = []
 def backup_thread
     Thread.new do
-        Dir.mktmpdir do |tmp_dir|
-            yield tmp_dir
+        begin
+            Dir.mktmpdir do |tmp_dir|
+                yield tmp_dir
+            end
+        rescue StandardError => error
+            ERRORS << error
         end
+    end
+end
+
+def handle_errors(config_path)
+    notifier = ServerBackups::Notifier.new(config_path)
+    if ERRORS.empty?
+        notifier.notify_success
+        puts "That's the jam"
+    else
+        notifier.notify_failure(ERRORS)
+        puts "borthnarg" * 15
+        puts ERRORS.inspect
     end
 end
 
@@ -39,6 +54,7 @@ def run_backups(backup_type, config_file, database, db_only, files_only)
                           end
                       end
     [website_backup, database_backup].compact.each(&:join)
+    handle_errors(config_file)
     exit_success!
 end
 

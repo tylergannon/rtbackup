@@ -28,6 +28,7 @@ Gem::Specification.new do |spec|
     spec.add_dependency 'activesupport', '~> 5.1'
     spec.add_dependency 'aws-sdk-s3', '~> 1.8'
     spec.add_dependency 'main', '~> 6.2'
+    spec.add_dependency 'slack-notifier', '~> 2.3.2'
 
     spec.files = `git ls-files -z`.split("\x0").reject do |f|
         f.match(%r{^(test|spec|features)/})

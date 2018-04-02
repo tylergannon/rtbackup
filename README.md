@@ -1,15 +1,18 @@
-# Backup Website and MySQL to S3
+# Backup Website and Mysql databases to S3
 
-A simple wrapper for the [mys3ql](https://github.com/airblade/mys3ql) Rubygem for incremental mysql
-backups, and [GNU Tar](https://www.gnu.org/software/tar/).
+Automated backup and recovery solution capable of restoring files and databases
+to a given point in time.
 
-Key assumptions made:
+* Incremental backups of files using [GNU Tar](https://www.gnu.org/software/tar/)
+* Incremental backups of databases using binary logging
+* Files are stored in a structured manner within an Amazon S3 bucket using
+[AWS S3 SDK gem](https://github.com/aws/aws-sdk-ruby)
 
-* All pertinent files are in /var/www.
+**Key assumptions made:**
+
 * All databases except system databases will be backed up.
 * Mysql database only.
-* All databases should have binlogs turned on.
-* A restore will trigger an entire restore of all databases and files.
+* Mysql binary logging is turned on.
 * The **GNU** (not BSD) version of _tar_.  The GNU version includes --listed-incremental, which is needed for incremental backups.
 
 ## Installation
@@ -19,7 +22,7 @@ Key assumptions made:
 ```bash
 
 sudo apt install ruby ruby-dev zlib1g-dev
-sudo gem install main activesupport
+sudo gem install server_backups-0.x.x.gem
 
 ```
 
@@ -34,6 +37,12 @@ log_bin                 = /var/log/mysql/mysql-bin.log   #  Or your favorite loc
 
 ```
 
+Then restart mysql:
+
+```
+sudo service mysql restart
+```
+
 ### Grant user read access to mysql binary logs and also to your web root
 
 ```bash
@@ -42,10 +51,15 @@ sudo usermod -a -G www-data ubuntu
 sudo usermod -a -G mysql ubuntu
 ```
 
+### 
 
 ## Usage
 
-### Take your backups.
+### Set up your crontab.  
+
+* Use `crontab -e` to edit cron configuration.
+
+**Sample Crontab configuration**
 
 ```bash
 

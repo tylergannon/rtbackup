@@ -17,6 +17,10 @@ to a given point in time.
 
 ## Installation
 
+Download the installation package from https://gitlab.com/zigzagau/server_backups/tags
+Find the latest tag and download server_backups-0.x.x.gem from there.
+Copy that file to your server.
+
 ### Ubuntu
 
 ```bash

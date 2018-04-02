@@ -55,22 +55,102 @@ sudo usermod -a -G mysql ubuntu
 
 ## Usage
 
+### Set up a configuration file
+
+Copy `backup_conf.sample.yml` to `~/.backup_conf.yml` and edit the settings.
+Alternatively you can put the file anywhere, and then specify the path to the file
+using the `-c` parameter.
+
 ### Set up your crontab.  
 
 * Use `crontab -e` to edit cron configuration.
 
 **Sample Crontab configuration**
 
-```bash
+```
 
-# Once per day:
-website_backup backup app_name daily
-# Once per week:
-website_backup backup app_name weekly
 # Once per month:
-website_backup backup app_name monthly
-# Every so often:
-website_backup backup app_name incremental
+3 0 1 * * /usr/local/bin/server_backup monthly
+# Once per week:
+5 0 * * 0 /usr/local/bin/server_backup weekly
+# Once per day:
+5 0 *  * 1-6 /usr/local/bin/server_backup daily
+# And incremental backups once per hour
+5 1-23 * * * /usr/local/bin/server_backup incremental
+
+```
+
+### Command line parameters
+
+#### 1) For taking backups:
+
+some examples
+
+```bash
+# Take a full backup and store it in the monthly backups location.
+server_backup monthly
+
+# Take a full backup as normal, but instead of backing up all databases,
+# only back up `mydatabase`.
+server_backup daily -d mydatabase
+
+server_backup daily -f  # only back up the files, not the database(s)
+server_backup daily -b  # only back up the database(s), not the files
+
+# Take an incremental backup, but load the given configuration file.
+server_backup incremental -c /etc/my_backup_configuration.cnf
+
+```
+
+#### 2) List (or search) time zones for help with configuration
+
+```bash
+server_backup zones  # list all
+server_backup zones america  # case insensitive search for zones containing a string
+```
+
+#### 3) Restore backups
+
+```bash
+# Restore up to the latest backup data available on s3
+server_backlup restore
+
+# Restore up to two days ago at 3pm in the configured
+# time zone (see config file).
+server_backup restore --up_to='two days ago at 3:00 PM'
+
+# To make it easier to decide what time your restore point
+# should be, you can write the restore point time in any time
+# zone and it will be translated to the server's normal time zone.
+#
+# This way, if the server is in UTC and you're in Singapore, you
+# don't necessarily have to do any confusing time maths in order
+# to restore back to what time it was before you made a mistake
+# and updated a wordpress plugin.  ;)
+server_backup restore --up_to='March 28 12:00 PM' --time_zone='Singapore'
+
+``` 
+
+```
+NAME
+  server_backup
+
+SYNOPSIS
+  server_backup (restore|zones) backup_type [options]+
+
+PARAMETERS
+  backup_type (1 -> symbol(backup_type))
+      specifies the backup type to perform [incremental | daily | weekly |
+      monthly]
+  --config=config, -c (0 ~> config=~/.backup_conf.yml)
+      load configuration from YAML file
+  --database=database, -d (default ~> database=all)
+      Which database to back up, defaults to all non-system databases.
+  --db_only, -b (default ~> false)
+      If specified
+  --files_only=[files_only], -f (de ~> files_only)
+      Only work with files.
+  --help, -h
 ```
 
 ### Restore your application

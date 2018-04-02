@@ -11,6 +11,7 @@ logging:
 
 file_location: 'spec/fixtures/www'
 time_zone: 'Singapore'
+system_time_zone: 'Asia/Ho_Chi_Minh'
 
 retention:
   incremental:

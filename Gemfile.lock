@@ -1,11 +1,11 @@
 PATH
   remote: .
   specs:
-    server_backups (0.1.7)
+    server_backups (0.1.21)
       activesupport (~> 5.1)
       aws-sdk-s3 (~> 1.8)
       main (~> 6.2)
-      slack-notifier (~> 2.3.2)
+      slack-notifier (~> 2.3)
 
 GEM
   remote: https://rubygems.org/

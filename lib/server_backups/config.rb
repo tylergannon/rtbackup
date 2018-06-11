@@ -8,16 +8,24 @@ require 'logger'
 module ServerBackups
     class Config
         attr_reader :logger, :logging, :config_file
+        cattr_accessor :config
 
         DEFAULT_LOGFILE_SIZE = 1.megabytes
         DEFAULT_LOGFILE_COUNT = 7
 
         def initialize(config_file = nil)
-            @config_file = config_file || default_config_file
-            @config = YAML.load_file File.expand_path(config_file)
+            if config_file == '-'
+                @config_file = config_file
+                @config = Config::config ||= YAML::safe_load(STDIN.read())
+            else
+                @config_file = config_file || default_config_file
+                @config = YAML.load_file File.expand_path(config_file)
+            end
+
             @logging = @config['logging']
             @logger = Logger.new(log_device, logfile_count, logfile_size)
-        rescue Errno::ENOENT
+        rescue Errno::ENOENT => e
+            puts e.backtrace
             warn "missing config file #{config_file}"
             exit 1
         end
@@ -119,6 +127,10 @@ module ServerBackups
         #
         # MySQL
         #
+
+        def db_host
+            mysql['host'] || '127.0.0.1'
+        end
 
         def user
             mysql['user']

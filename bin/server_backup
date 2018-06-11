@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require 'fileutils'
+
 lib_dir = File.join(File.dirname(__FILE__), '..', 'lib')
 $LOAD_PATH.unshift lib_dir if File.directory?(lib_dir)
 
@@ -18,11 +20,13 @@ ERRORS = []
 def backup_thread
     Thread.new do
         begin
-            Dir.mktmpdir do |tmp_dir|
-                yield tmp_dir
-            end
+            dir = File.join(Dir.getwd, rand.to_s)
+            FileUtils.mkdir_p(dir)
+            yield dir
         rescue StandardError => error
             ERRORS << error
+        ensure
+            FileUtils.rm_rf dir
         end
     end
 end
@@ -34,52 +38,55 @@ def handle_errors(config_path)
         puts "That's the jam"
     else
         notifier.notify_failure(ERRORS)
-        puts "borthnarg" * 15
-        puts ERRORS.inspect
+        ERRORS.each do |error|
+            puts error.message
+            puts "\n\n    " + error.backtrace.join("\n    ")
+        end
     end
 end
 
 def run_backups(backup_type, config_file, database, db_only, files_only)
-    website_backup = unless db_only
-                         backup_thread do |tmp_dir|
-                             ServerBackups::WebsiteBackup.new(config_file,
-                                                              tmp_dir, backup_type).do_backup
-                         end
-                     end
-    database_backup = unless files_only
-                          backup_thread do |tmp_dir|
-                              ServerBackups::MysqlBackup.send(backup_type,
-                                                              config_file,
-                                                              tmp_dir, database).do_backup
-                          end
-                      end
-    [website_backup, database_backup].compact.each(&:join)
-    handle_errors(config_file)
-    exit_success!
+    begin
+        tmp_dir = File.join(Dir.getwd, rand.to_s)
+        FileUtils.mkdir_p tmp_dir
+        unless db_only
+            ServerBackups::WebsiteBackup.new(config_file,
+                                            tmp_dir, backup_type).do_backup
+        end
+        unless files_only
+            ServerBackups::MysqlBackup.send(backup_type,
+                                            config_file,
+                                            tmp_dir, database).do_backup
+        end
+    rescue StandardError => error
+        puts error.message
+        puts "\n\n    " + error.backtrace.join("\n    ")
+        exit(2)
+    ensure
+        FileUtils.rm_rf tmp_dir
+    end
 end
 
 def run_restore(config_file, database, up_to, tz, db_only, files_only)
     Chronic.time_class = find_time_zone(tz) if tz
     up_to = Chronic.parse(up_to)
-    website_restore = unless db_only
-                          backup_thread do |tmp_dir|
-                              ServerBackups::WebsiteRestore.new(config_file,
-                                                                tmp_dir, up_to).do_restore
-                          end
-                      end
-    database_restore = unless files_only
-                           backup_thread do |tmp_dir|
-                               ServerBackups::MysqlRestore.restore(config_file,
-                                                                   tmp_dir,
-                                                                   up_to, database)
-                           end
-                       end
-    [website_restore, database_restore].compact.each(&:join)
-    exit_success!
-end
-
-def time_zone_match?(pattern, timezone)
-    pattern =~ timezone.name || pattern =~ timezone.tzinfo.name
+    tmp_dir = File.join(Dir.getwd, rand.to_s)
+    begin
+        FileUtils.mkdir_p tmp_dir
+        unless db_only
+            ServerBackups::WebsiteRestore.new(config_file,
+                tmp_dir, up_to).do_restore
+        end
+        unless files_only
+            ServerBackups::MysqlRestore.restore(config_file,
+                tmp_dir,
+                up_to, database)
+        end
+    rescue StandardError => error
+        puts error.message
+        puts "\n\n    " + error.backtrace.join("\n    ")
+        exit(2)
+    end
 end
 
 Main do
@@ -138,7 +145,7 @@ Main do
         def run
             pattern = Regexp.new(params['search'].value, 'i')
             ActiveSupport::TimeZone.all.sort_by(&:name).each do |timezone|
-                if time_zone_match?(pattern, timezone)
+                if pattern =~ timezone.name || pattern =~ timezone.tzinfo.name
                     puts timezone.name + "\t\t" + timezone.tzinfo.name
                 end
             end

@@ -55,7 +55,7 @@ sudo usermod -a -G www-data ubuntu
 sudo usermod -a -G mysql ubuntu
 ```
 
-### 
+###
 
 ## Usage
 
@@ -63,9 +63,16 @@ sudo usermod -a -G mysql ubuntu
 
 Copy `backup_conf.sample.yml` to `~/.backup_conf.yml` and edit the settings.
 Alternatively you can put the file anywhere, and then specify the path to the file
-using the `-c` parameter.
+using the `-c` parameter, or even pipe a config file in through stdin.
 
-### Set up your crontab.  
+The latter option is useful if you'd like to keep passwords and keys in variables,
+rather than saving them to the filesystem.
+
+```bash
+envsubst < back_conf.yml.tmpl | server_backup daily -c -
+```
+
+### Set up your crontab.
 
 * Use `crontab -e` to edit cron configuration.
 
@@ -117,7 +124,7 @@ server_backup zones america  # case insensitive search for zones containing a st
 
 ```bash
 # Restore up to the latest backup data available on s3
-server_backlup restore
+server_backup restore
 
 # Restore up to two days ago at 3pm in the configured
 # time zone (see config file).
@@ -133,7 +140,7 @@ server_backup restore --up_to='two days ago at 3:00 PM'
 # and updated a wordpress plugin.  ;)
 server_backup restore --up_to='March 28 12:00 PM' --time_zone='Singapore'
 
-``` 
+```
 
 ```
 NAME
@@ -164,4 +171,4 @@ website_backup restore app_name
 ```
 
 
-* Everything in /var/www 
+* Everything in /var/www

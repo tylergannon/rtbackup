@@ -1,9 +1,9 @@
 ###############################################################################
-# 
+#
 #                  Sample Backup Configuration
-# 
-# 
-# 
+#
+#
+#
 ###############################################################################
 
 logging:
@@ -26,7 +26,7 @@ time_zone: 'Singapore'
 # defaults to the value of the `time_zone` property above.
 system_time_zone: 'Asia/Ho_Chi_Minh'
 
-slack: 
+slack:
   # Set up a new webhook at https://slack.com/apps/A0F7XDUAZ-incoming-webhooks
   # Once configured, put the address here.
   webhook: https://hooks.slack.com/services/asdasdasdasdasdasdasdasdasdasd
@@ -53,6 +53,7 @@ retention:
     months: 11
 
 mysql:
+  host: 127.0.0.1
   # Database to back up
   database:
   # MySql credentials

@@ -76,7 +76,7 @@ module ServerBackups
 
         def cli_options
             cmd = config.password.blank? ? '' : " -p'#{config.password}' "
-            cmd + " -u'#{config.user}' " + database_name
+            cmd + " -u'#{config.user}' -h #{config.db_host} " + database_name
         end
 
         def execute_sql(sql)

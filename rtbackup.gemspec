@@ -6,7 +6,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'server_backups/version'
 
 Gem::Specification.new do |spec|
-    spec.name = 'server_backups'
+    spec.name = 'rtbackup'
     spec.version       = ServerBackups::VERSION
     spec.authors       = ['Tyler Gannon']
     spec.email         = ['tgannon@gmail.com']

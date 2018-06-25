@@ -17,16 +17,29 @@ to a given point in time.
 
 ## Installation
 
-Download the installation package from https://gitlab.com/zigzagau/server_backups/tags
-Find the latest tag and download server_backups-0.x.x.gem from there.
-Copy that file to your server.
+### Alpine Linux
+
+The following instructions work for Alpine Linux
+
+```bash
+apk add --no-cache ruby ruby-rake ruby-io-console ruby-bigdecimal ruby-json ruby-bundler \
+                   tar gzip zlib zlib-dev dcron tzdata
+
+cat > ~/.gemrc <<EOF
+---
+gem: --no-ri --no-rdoc
+EOF
+
+gem install rtbackup
+
+```
 
 ### Ubuntu
 
 ```bash
 
 sudo apt install ruby ruby-dev zlib1g-dev
-sudo gem install server_backups-0.x.x.gem
+sudo gem install rtbackups-0.x.x.gem
 
 ```
 
@@ -61,7 +74,14 @@ sudo usermod -a -G mysql ubuntu
 
 ### Set up a configuration file
 
-Copy `backup_conf.sample.yml` to `~/.backup_conf.yml` and edit the settings.
+Set up a configuration file with the following command:
+
+```bash
+wget https://kubobuild.page.link/rtbackup-conf -O ~/.backup_conf.yml
+```
+
+Now open `~/.backup_conf.yml` and adjust it to fit your app's needs.
+
 Alternatively you can put the file anywhere, and then specify the path to the file
 using the `-c` parameter, or even pipe a config file in through stdin.
 
@@ -69,7 +89,7 @@ The latter option is useful if you'd like to keep passwords and keys in variable
 rather than saving them to the filesystem.
 
 ```bash
-envsubst < back_conf.yml.tmpl | server_backup daily -c -
+envsubst < back_conf.yml.tmpl | rtbackup daily -c -
 ```
 
 ### Set up your crontab.
@@ -81,13 +101,13 @@ envsubst < back_conf.yml.tmpl | server_backup daily -c -
 ```
 
 # Once per month:
-3 0 1 * * /usr/local/bin/server_backup monthly
+3 0 1 * * /usr/bin/rtbackup monthly
 # Once per week:
-5 0 * * 0 /usr/local/bin/server_backup weekly
+5 0 * * 0 /usr/bin/rtbackup weekly
 # Once per day:
-5 0 *  * 1-6 /usr/local/bin/server_backup daily
+5 0 *  * 1-6 /usr/bin/rtbackup daily
 # And incremental backups once per hour
-5 1-23 * * * /usr/local/bin/server_backup incremental
+5 1-23 * * * /usr/bin/rtbackup incremental
 
 ```
 
@@ -99,36 +119,36 @@ some examples
 
 ```bash
 # Take a full backup and store it in the monthly backups location.
-server_backup monthly
+rtbackup monthly
 
 # Take a full backup as normal, but instead of backing up all databases,
 # only back up `mydatabase`.
-server_backup daily -d mydatabase
+rtbackup daily -d mydatabase
 
-server_backup daily -f  # only back up the files, not the database(s)
-server_backup daily -b  # only back up the database(s), not the files
+rtbackup daily -f  # only back up the files, not the database(s)
+rtbackup daily -b  # only back up the database(s), not the files
 
 # Take an incremental backup, but load the given configuration file.
-server_backup incremental -c /etc/my_backup_configuration.cnf
+rtbackup incremental -c /etc/my_backup_configuration.cnf
 
 ```
 
 #### 2) List (or search) time zones for help with configuration
 
 ```bash
-server_backup zones  # list all
-server_backup zones america  # case insensitive search for zones containing a string
+rtbackup zones  # list all
+rtbackup zones america  # case insensitive search for zones containing a string
 ```
 
 #### 3) Restore backups
 
 ```bash
 # Restore up to the latest backup data available on s3
-server_backup restore
+rtbackup restore
 
 # Restore up to two days ago at 3pm in the configured
 # time zone (see config file).
-server_backup restore --up_to='two days ago at 3:00 PM'
+rtbackup restore --up_to='two days ago at 3:00 PM'
 
 # To make it easier to decide what time your restore point
 # should be, you can write the restore point time in any time
@@ -138,16 +158,16 @@ server_backup restore --up_to='two days ago at 3:00 PM'
 # don't necessarily have to do any confusing time maths in order
 # to restore back to what time it was before you made a mistake
 # and updated a wordpress plugin.  ;)
-server_backup restore --up_to='March 28 12:00 PM' --time_zone='Singapore'
+rtbackup restore --up_to='March 28 12:00 PM' --time_zone='Singapore'
 
 ```
 
 ```
 NAME
-  server_backup
+  rtbackup
 
 SYNOPSIS
-  server_backup (restore|zones) backup_type [options]+
+  rtbackup (restore|zones) backup_type [options]+
 
 PARAMETERS
   backup_type (1 -> symbol(backup_type))

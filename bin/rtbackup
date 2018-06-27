@@ -2,9 +2,22 @@
 # frozen_string_literal: true
 
 require 'fileutils'
-
-lib_dir = File.join(File.dirname(__FILE__), '..', 'lib')
+require 'open3'
+this_executable = File.expand_path(__FILE__)
+this_dir = File.expand_path('..', File.dirname(__FILE__))
+lib_dir = File.join(this_dir, 'lib')
 $LOAD_PATH.unshift lib_dir if File.directory?(lib_dir)
+
+CRONTAB = <<-EOF
+# Once per month:
+3 0 1 * * #{this_executable} monthly
+# Once per week:
+5 0 * * 0 #{this_executable} weekly
+# Once per day:
+5 0 *  * 1-6 #{this_executable} daily
+# And incremental backups once per hour
+5 1-23 * * * #{this_executable} incremental
+EOF
 
 require 'server_backups'
 require 'main'
@@ -131,6 +144,39 @@ Main do
                                        'time_zone',
                                        'db_only',
                                        'files_only').values)
+        end
+    end
+    mode 'crontab' do
+        params[:backup_type].ignore!
+        def run
+            this_executable = File.expand_path(__FILE__)
+            current_crontab, stderr, status = Open3.capture3('crontab -l')
+            if current_crontab =~ Regexp.new(this_executable)
+                puts "Backups appear to be scheduled already."
+                puts "Run crontab -e to modify the schedule, or crontab -l to show it or crontab -r to delete it."
+            else
+                CRONTAB.split("\n").each do |line|
+                    `(crontab -l 2>/dev/null; echo "#{line}") | crontab -`
+                end
+                puts "Backups are scheduled."
+                puts "Run crontab -e to modify the schedule, or crontab -l to show it or crontab -r to delete it."
+            end
+        end
+    end
+
+    mode 'create_config' do
+        params[:backup_type].ignore!
+        def run
+            this_dir = File.expand_path('..', File.dirname(__FILE__))
+            conf_file = File.join(this_dir, 'backup_conf.sample.yml')
+            new_file = File.expand_path("~/.backup_conf.yml")
+            if File.exists?(new_file)
+                puts "#{new_file} already exists.  Please remove it before creating a new one."
+            else
+                FileUtils.copy(conf_file, new_file)
+                puts "I've added a backup configuration file at #{new_file}."
+                puts "Please edit it and make sure that your settings are correct."
+            end
         end
     end
 

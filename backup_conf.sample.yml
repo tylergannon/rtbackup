@@ -12,11 +12,11 @@ mysql:
   user: root
   password:
   # Path (with trailing slash) to mysql commands e.g. mysqldump
-  bin_path: /usr/local/bin/
+  bin_path: /usr/bin/
   # If you are using MySql binary logging:
   # Path to the binary logs, should match the log_bin option in your my.cnf.
   # Comment out if you are not using mysql binary logging
-  bin_log: /var/tmp/mysql-bin
+  bin_log: /var/lib/mysql/mysql-bin
 
 s3:
   # S3 credentials
@@ -32,7 +32,16 @@ s3:
 
   # AWS region your bucket lives in.
   # (I suspect you only need to specify this when your 'location' is in a different region.)
-x  region: ap-southeast-2
+  region: ap-southeast-2
+
+  # Optional.  Defaults to /var/www
+file_location: '/var/www/html'
+# The time zone that you'd like backups to be kept in.
+# Backup files will be named with a timestamp located in the given timezone.
+time_zone: 'Sydney'
+# Optional.  Will attempt to determine from operating system
+# defaults to the value of the `time_zone` property above.
+system_time_zone: 'UTC'
 
 logging:
     # DEBUG, INFO, WARN, ERROR, FATAL
@@ -44,15 +53,6 @@ logging:
     keep_files: 1
     file_size:
         kilobytes: 100
-
-# Optional.  Defaults to /var/www
-file_location: '/var/www/html'
-# The time zone that you'd like backups to be kept in.
-# Backup files will be named with a timestamp located in the given timezone.
-time_zone: 'Sydney'
-# Optional.  Will attempt to determine from operating system
-# defaults to the value of the `time_zone` property above.
-system_time_zone: 'UTC'
 
 slack:
   # Set up a new webhook at https://slack.com/apps/A0F7XDUAZ-incoming-webhooks
@@ -71,8 +71,9 @@ slack:
     - U9ASDFASD
 
 retention:
+  # How many hourly incremental backups to keep
   incremental:
-    hours: 144
+    hours: 48
   daily:
     days: 6
   weekly:

@@ -38,20 +38,25 @@ gem install rtbackup
 
 ```bash
 
-sudo apt install ruby ruby-dev zlib1g-dev
-sudo gem install rtbackups-0.x.x.gem
+sudo apt-get install -y ruby ruby-dev zlib1g-dev
+sudo gem install rtbackup
 
 ```
 
-### Configure Mysql Bin Logging
+### Configure Mysql Binary Logging
 
-Add the following to your `my.cnf`, or on Ubuntu you might want to add it to `/etc/mysql/mysql.conf.d/mysqld.conf`
+Make sure that binary logging is enabled on your mysql server.  The following settings
+need to be enabled in mysql configuration files.  On Debian-based Linux distros this
+means editing `/etc/mysql/mysql.conf.d/mysqld.cnf`, though Alpine Linux and others will
+involve editing `/etc/mysql/my.cnf`.
+
 ```
 [mysqld]
-...
-server-id               = 1     # Set it nicely if using replication
-log_bin                 = /var/log/mysql/mysql-bin.log   #  Or your favorite location
-
+# ...
+#  Make sure that you know how to use this setting properly if you're using replication.
+server-id               = 1
+log_bin                 = /var/log/mysql/mysql-bin  #  Make sure this matches the
+                                                    #  bin_log setting in your backup_conf.yml file.
 ```
 
 Then restart mysql:
@@ -68,50 +73,46 @@ sudo usermod -a -G www-data ubuntu
 sudo usermod -a -G mysql ubuntu
 ```
 
-###
-
-## Usage
-
-### Set up a configuration file
+## Set up backup_conf.yml
 
 Set up a configuration file with the following command:
 
 ```bash
-wget https://kubobuild.page.link/rtbackup-conf -O ~/.backup_conf.yml
+rtbackup create_config
 ```
 
-Now open `~/.backup_conf.yml` and adjust it to fit your app's needs.
+Now edit `~/.backup_conf.yml` and adjust it to fit your app's needs.
 
-Alternatively you can put the file anywhere, and then specify the path to the file
-using the `-c` parameter, or even pipe a config file in through stdin.
+## Schedule backups to run.
 
-The latter option is useful if you'd like to keep passwords and keys in variables,
-rather than saving them to the filesystem.
+Schedule your backups by running
 
 ```bash
-envsubst < back_conf.yml.tmpl | rtbackup daily -c -
+rtbackup crontab
 ```
 
-### Set up your crontab.
+This will enable the recommended backup schedule:
 
-* Use `crontab -e` to edit cron configuration.
+* Hourly incremental backups from 1am to 11pm
+* Daily full backups at midnight
+* Weekly full backups on Sunday
+* Monthly full backups on the first of the month
 
-**Sample Crontab configuration**
+Full backups are all the same, but their retention periods differ.
 
+Change the schedule by running the command:
+
+```bash
+crontab -e
 ```
 
-# Once per month:
-3 0 1 * * /usr/bin/rtbackup monthly
-# Once per week:
-5 0 * * 0 /usr/bin/rtbackup weekly
-# Once per day:
-5 0 *  * 1-6 /usr/bin/rtbackup daily
-# And incremental backups once per hour
-5 1-23 * * * /usr/bin/rtbackup incremental
+See the [crontab manual pages](https://linux.die.net/man/5/crontab) or look online for tutorials
+on how to edit cron schedules.
 
-```
+That's all!  Your backups are now scheduled.  You may run `rtbackup daily` in order to get your first
+full backup.
 
-### Command line parameters
+# Command line parameters
 
 #### 1) For taking backups:
 

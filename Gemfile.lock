@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    server_backups (0.1.21)
+    rtbackup (0.1.21)
       activesupport (~> 5.1)
       aws-sdk-s3 (~> 1.8)
       main (~> 6.2)
@@ -81,7 +81,7 @@ DEPENDENCIES
   bundler (~> 1.16)
   rake (~> 10.5)
   rspec (~> 3.0)
-  server_backups!
+  rtbackup!
   vcr (~> 4.0)
   webmock (~> 3.3)
 
